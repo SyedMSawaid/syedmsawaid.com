@@ -1,0 +1,18 @@
+---
+layout: default
+title: Resume
+---
+<h1>Experience</h1>
+{% for experience in site.data.resume.experience %}
+  {% render 'resume/experience', experience: experience %}
+{% endfor %}
+
+<h1>Education</h1>
+{% for education in site.data.resume.education %}
+  {% render 'resume/education', education: education %}
+{% endfor %}
+
+<h1>Skills</h1>
+{% for skill in site.data.resume.skills %}
+  <div>{{ skill }}</div>
+{% endfor %}

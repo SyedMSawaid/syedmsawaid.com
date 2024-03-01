@@ -1,0 +1,16 @@
+<div>
+  <h2>{{ experience.company_name }}</h2>
+  <p>{{ experience.location }}</p>
+  <p>
+    <a href="{{ experience.website }}" target="_blank">Website</a>
+  </p>
+</div>
+
+<p>Start Date: {{ experience.joining_date }}</p>
+<p>End Date: {{ experience.leaving_date }}</p>
+
+<ul>
+  {% for responsibility in experience.responsibilities %}
+    <li>{{ responsibility }}</li>
+  {% endfor %}
+</ul>

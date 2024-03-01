@@ -1,0 +1,114 @@
+{
+  "education": [
+    {
+      "institute_name": "COMSATS University Islamabad",
+      "location": "Islamabad, Pakistan",
+      "certificate_name": "Bachelor of Science in Software Engineering",
+      "website": "https://www.comsats.edu.pk/"
+    },
+    {
+      "institute_name": "Edwardes College Peshawar",
+      "location": "Peshawar, Pakistan",
+      "certificate_name": "Intermediate (Higher Secondary School Certificate)",
+      "website": "https://edwardes.edu.pk/"
+    },
+    {
+      "institute_name": "Frontier Children’s Academy",
+      "location": "Peshawar, Pakistan",
+      "certificate_name": "Matriculation (Secondary School Certificate)",
+      "website": "https://www.fca.edu.pk/fca/"
+    }
+  ],
+  "experience": [
+    {
+      "company_name": "GeeksPod Inc.",
+      "location": "Remote, United States",
+      "website": "N/A",
+      "joining_date": "September 01, 2022",
+      "leaving_date": "Present",
+      "responsibilities": [
+        "Working as a team lead on a SaaS product building new features for a US startup with Node, PHP, React, and WordPress.",
+        "Made their applications auto-scalable including their WordPress website utilizing AWS services like EFS, S3, Aurora, and Lambda.",
+        "Working on improving the overall architecture by migrating to new technologies like Nextjs, and improving the deployment cycle with seamless CI/CD."
+      ]
+    },
+    {
+      "company_name": "Xumerz Inc.",
+      "location": "Peshawar, Pakistan",
+      "website": "N/A",
+      "joining_date": "May 01, 2022",
+      "leaving_date": "September 30, 2022",
+      "responsibilities": [
+        "Maintained a legacy Windows Form application while simultaneously migrating it to ASP.NET Web APIs and Angular.",
+        "Creating a new auth flow for their new web application using certificates, Azure AD, and a custom database-backed authentication scheme improving the over security and flexibility of the system."
+      ]
+    },
+    {
+      "company_name": "Talented Earth Organization International",
+      "location": "Islamabad, Pakistan",
+      "website": "https://www.teo-intl.com/",
+      "joining_date": "October 01, 2021",
+      "leaving_date": "April 30, 2022",
+      "responsibilities": [
+        "I worked on migrating their internal legacy management software from ASP.NET Framework to the latest ASP.NET Core using their proprietary architecture based on clean architecture.",
+        "Optimized slow-performing EF queries to SQL procedure boosting the performance of complex workflows by bringing down execution time from 60+ minutes to 4 seconds. This improved the organization's efficiency in processing reimbursements and salaries for the growing workforce.",
+        "Improved the performance of low-performing APIs using caching. This improved the performance of APIs, reducing the response time from a couple of seconds to sub 100ms.",
+        "Implemented Classic CI/CD on Azure DevOps from scratch using self-host agents."
+      ]
+    }
+  ],
+  "skills": [
+    "ASP.NET",
+    "React",
+    "Vuejs ",
+    "Nodejs ",
+    "Nextjs ",
+    "Redux ",
+    "React Query (TanQuery) ",
+    "TanStack Table",
+    "TailwindCSS ",
+    "Prisma tRPC ",
+    "Entity Framework ",
+    "Identity Framework ",
+    "Identity Server ",
+    "Windows Form ",
+    "WPF ",
+    "AvaloniaUI ",
+    "Ruby on Rails ",
+    "jQuery ",
+    "Hotwire ",
+    "Stimulus ",
+    "Hotwire ",
+    "Turbo Devise",
+    "Docker ",
+    "NUnit ",
+    "xUnit ",
+    "StoryBook ",
+    "Vitest ",
+    "HTML ",
+    "CSS ",
+    "C# ",
+    "TypeScript ",
+    "JavaScript ",
+    "Ruby",
+    "Python ",
+    "SQL Server",
+    "PostgreSQL ",
+    "MySQL ",
+    "Redis ",
+    "MongoDB ",
+    "SQLite ",
+    "Code Reviews",
+    "DevOps ",
+    "CI/CD ",
+    "Agile Methodology ",
+    "Scrum ",
+    "Kanban ",
+    "Git Branching Strategy",
+    "Unit Testing",
+    "Integration Testing",
+    "AWS ",
+    "Azure ",
+    "Git "
+  ]
+}
