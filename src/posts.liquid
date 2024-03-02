@@ -1,0 +1,32 @@
+---
+layout: page
+title: Posts
+---
+{% assign sorted_posts = collections.posts.resources | sort: 'date' | reverse %}
+{% assign current_year = '' %}
+{% assign current_month = '' %}
+
+{% for post in sorted_posts %}
+  {% assign post_year = post.data.date | date: '%Y' %}
+  {% assign post_month = post.data.date | date: '%B' %}
+
+  {% if current_month != post_month %}
+    </ul>
+  {% endif %}
+
+  {% if current_year != post_year %}
+    <h2>{{ post_year }}</h2>
+    {% assign current_year = post_year %}
+    {% assign current_month = '' %}
+  {% endif %}
+
+  {% if current_month != post_month %}
+    <h3>{{ post_month }}</h3>
+    {% assign current_month = post_month %}
+    <ul>
+  {% endif %}
+
+  <li>
+    <a href="{{ post.relative_url }}">{{ post.data.title }}</a>
+  </li>
+{% endfor %}
