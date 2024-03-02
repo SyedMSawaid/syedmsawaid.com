@@ -47,3 +47,44 @@ end
 #     say_status :rake, "I'm a Rake tast =) #{site.config.url}"
 #   end
 # end
+
+
+desc "Create a new resource"
+task :create do |task|
+  rake_task, type, title = ARGV
+  time = Time.now
+
+  folder_name = folder_name_for type
+  file_name = file_name_for title, at: time
+  file_path = "#{folder_name}/#{file_name}.md"
+
+
+  abort "A post with \"#{file_path}\" and title \"#{title}\" already exists".red if File.exist? file_path
+
+  File.open file_path, "w" do |file|
+    file.write file_content type: type, title: title, at: time
+  end
+
+  puts "Successfully created a post at \"#{file_path}\" with title \"#{title}\".".green
+  exit
+end
+
+private
+
+def folder_name_for type
+  "src/_#{type.pluralize}"
+end
+
+def file_name_for title, at:
+  "#{at.to_date}-#{title.parameterize}"
+end
+
+def file_content type:, title:, at:
+  %(---
+layout: #{type}
+title:  #{title}
+date:   #{at}
+tag:
+---
+)
+end
