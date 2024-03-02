@@ -38,7 +38,7 @@ const esbuildOptions = {
   globOptions: {
     excludeFilter: /\.(dsd|lit)\.css$/
   },
-  // publicPath: "syedmsawaid.com",
+  // publicPath: "syedmsawaid.com", // Not needed for now.
 }
 
 build(esbuildOptions)
