@@ -9,6 +9,10 @@ Learn more about project SprintBYC
 
 <!-- Add Some Favourite Books -->
 
+# Currently Reading
+- 7 Habits of Highly Effective People
+- The Stoic Mind
+
 <!-- Add Some Favourite Technologies -->
 
 <!-- Add Some Favourite Posts -->
