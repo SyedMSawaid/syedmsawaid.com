@@ -1,8 +1,8 @@
 ---
 layout: post
-title: On Minimalism and Launching Fast
-date:   2022-05-13 00:00:00 +0500
-tag: 
+title: Write more to write better
+date: 2022-05-13 00:00:00 +0500
+tag:
   - writing
 ---
 
