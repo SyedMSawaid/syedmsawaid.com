@@ -1,0 +1,9 @@
+---
+layout: default
+---
+<h1>Books I am currently reading</h1>
+<ul>
+  {% for book in site.data.books | where: "status", "reading" %}
+    <li>{{ book.title }} by {{ book.authors }}</li>
+  {% endfor %}
+</ul>

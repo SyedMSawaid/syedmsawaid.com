@@ -19,5 +19,16 @@ layout: default
 </p>
 
 {% comment %} Add Some Favourite Books {% endcomment %}
+
+<h2>Books</h2>
+{% assign reading_books = site.data.books | where: 'status', 'reading' %}
+
+<p>Currently, I am reading these books</p>
+<ul>
+  {% for book in reading_books %}
+    <li>{{ book.title }} by {{ book.authors }}</li>
+  {% endfor %}
+</ul>
+
 {% comment %} Some Favourite Books {% endcomment %}
 {% comment %} Add Some Favourite Posts {% endcomment %}
