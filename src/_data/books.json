@@ -3,6 +3,20 @@
     "title": "Programming Ruby 3.2",
     "authors": "Noel Rappin and Dave Thomas",
     "published": 2023,
-    "status": "reading"
+    "status": "reading",
+    "tags": [
+      "Programming",
+      "Ruby"
+    ]
+  },
+  {
+    "title": "The Stoic Mind",
+    "authors": "Addy Osmani and GoLimitless",
+    "published": "unknown",
+    "status": "reading",
+    "tags": [
+      "Philosophy",
+      "Stoicism"
+    ]
   }
 ]
