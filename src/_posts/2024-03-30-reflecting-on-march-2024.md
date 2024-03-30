@@ -47,4 +47,10 @@ In my next blog post, I will share my plan for the next Dark Mode. But for now, 
 
 ## How I am going to solve them
 
--
+- Eat at the dinner table without phones.
+- Either follow a strict routine or don't go to bed unless fully exhausted. Also don't keep your phone with yourself
+- Stream working on projects to make them fun to work on. Also eat your own dog food. Use your app to keep track of your things.
+- Meditate first thing in the morning or after any important meetings.
+- Write about your day or thoughts using your own application NotebookBYC.
+- Don't listen to podcasts during work. If you are bored, go out for a walk. Or write something.
+- Go feature wise and implement what you design. Do one feature at a time.
