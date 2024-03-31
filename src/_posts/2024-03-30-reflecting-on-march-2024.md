@@ -33,9 +33,9 @@ For this upcoming Dark Mode, I am planning to have a long list of features to im
 
 In my next blog post, I will share my plan for the next Dark Mode. But for now, let me get gather my thoughts about this Dark Mode.
 
-# Reflection
+## Reflection
 
-## My Mistakes
+### My Mistakes
 
 - I used to feel bored while eating. And to combat that, I turned to YouTube and Twitch.
 - I used to feel bored when going to sleep and just staring at the roof.
@@ -45,7 +45,7 @@ In my next blog post, I will share my plan for the next Dark Mode. But for now, 
 - I used to listen to podcast when working at my day job to pass time.
 - I hated designing and want to get to programming as soon as possible.
 
-## How I am going to solve them
+### How I am going to solve them
 
 - Eat at the dinner table without phone.
 - Either follow a strict routine or don't go to bed unless fully exhausted. Don't keep your phone beside bed.
