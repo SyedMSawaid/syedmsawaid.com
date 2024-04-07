@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="{{ site.locale }}">
   <head>
+    {% render 'analytics' %}
     {% render 'head', metadata: site.metadata, title: data.title %}
   </head>
-  {% render 'analytics' %}
   <body class="{{ data.layout }} {{ data.page_class }}">
     {% render 'navbar', metadata: site.metadata, resource: resource %}
 
