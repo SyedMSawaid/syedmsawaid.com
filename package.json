@@ -5,7 +5,8 @@
   "scripts": {
     "esbuild": "node esbuild.config.js --minify",
     "esbuild-dev": "node esbuild.config.js --watch",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "bin/bridgetown s"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.0.3",
