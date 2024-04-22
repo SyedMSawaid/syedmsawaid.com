@@ -32,21 +32,11 @@ a {
 }
 
 h1 {
-  margin: 1rem 0 3rem;
-  text-align: center;
-  font-weight: 900;
-  font-size: 2.5rem;
-  color: var(--heading-color);
-  line-height: 1.2;
+  @apply mb-5 text-3xl font-medium text-left;
 }
 
 h2 {
-  margin: 1rem 0 3rem;
-  text-align: center;
-  font-weight: 900;
-  font-size: 2rem;
-  color: var(--heading-color);
-  line-height: 1.2;
+  @apply mt-10 mb-2 text-2xl font-medium text-left;
 }
 
 p {
@@ -54,7 +44,7 @@ p {
 }
 
 ul {
-  @apply list-disc list-inside;
+  @apply pl-6 list-disc list-outside;
 }
 
 li {
@@ -66,7 +56,7 @@ details > summary {
 }
 
 details > ul {
-  @apply list-disc list-inside pl-1;
+  @apply pl-1 list-disc list-inside;
 }
 
 body > header {
@@ -95,19 +85,17 @@ main {
 
   & > div {
     & > h2 {
-      @apply text-2xl text-left font-medium mb-2 mt-10;
+      @apply mt-10 mb-2 text-2xl font-medium text-left;
     }
 
     & > h3 {
-      @apply text-xl text-left font-medium mb-2 mt-5;
+      @apply mt-5 mb-2 text-xl font-medium text-left;
+    }
+
+    & > ul {
+      @apply pb-6;
     }
   }
-}
-
-footer {
-  text-align: center;
-  margin-bottom: 4rem;
-  font-size: 1em;
 }
 
 hr {

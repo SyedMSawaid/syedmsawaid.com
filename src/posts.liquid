@@ -11,7 +11,7 @@ title: Posts
   {% assign post_month = post.data.date | date: '%B' %}
 
   {% if current_year != post_year %}
-    <h2 class="text-left text-xl font-normal py-2 pt-6 m-0">{{ post_year }}</h2>
+    <h2 class="py-2 pt-6 m-0 text-xl font-normal text-left">{{ post_year }}</h2>
     {% assign current_year = post_year %}
     {% assign current_month = '' %}
   {% endif %}
