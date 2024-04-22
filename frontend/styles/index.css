@@ -1,5 +1,14 @@
+/* If you need to add @import statements, do so up here */
+
+@import "jit-refresh.css"; /* triggers frontend rebuilds */
+
+/* Set up Tailwind imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --body-background: #f2f2f2;
+  --body-background: #fffcf0;
   --body-color: #444;
   --heading-color: black;
   --action-color: #d64045;
@@ -40,6 +49,18 @@ h2 {
   line-height: 1.2;
 }
 
+p {
+  @apply my-5 text-xl;
+}
+
+ul {
+  @apply list-disc list-inside;
+}
+
+li {
+  @apply text-xl;
+}
+
 body > header {
   margin: 1rem;
   text-align: center;
@@ -49,21 +70,6 @@ body > header img {
   display: inline-block;
   width: 400px;
   max-width: 100%;
-}
-
-body > nav ul {
-  margin: 2rem 0;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
-body > nav a {
-  text-decoration: none;
 }
 
 main {

@@ -37,3 +37,5 @@ yarn-debug.log*
 
 # Custom files
 IDEAS
+
+frontend/styles/jit-refresh.css
