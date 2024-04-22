@@ -55,10 +55,6 @@ details > summary {
   @apply text-xl;
 }
 
-details > ul {
-  @apply pl-1 list-disc list-inside;
-}
-
 body > header {
   margin: 1rem;
   text-align: center;
