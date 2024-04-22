@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Migrating to Bridgetown
-date:   2024-03-02 20:43:48 +0500
+title: Migrating to Bridgetown
+date: 2024-03-02 20:43:48 +0500
 tag:
   - blogging
   - writing
@@ -11,7 +11,7 @@ tag:
 
 The blogging platform for this website has changed more than the number of posts I have on this website. First it started with [Scully (Angular library)](https://scully.io/), then I switched to [Ghost](https://ghost.org/) (deployed on [Fly.io](https://fly.io/)), then it moved to [Astro](https://astro.build/) (deployed on [Vercel](https://vercel.com/)) and now, it is finally migrating to [Bridgetown](https://www.bridgetownrb.com/) which will be hosted on [GitHub pages](https://pages.github.com/). This will be the final migration.
 
-I started with Angular, because at that time, I was building my personal project with Angular and ASP.NET. For a simple static website, using Angular was an ungodly stupid choice. Generating simple HTML shouldn't be that hard, it should Just Work™. 
+I started with Angular, because at that time, I was building my personal project with Angular and ASP.NET. For a simple static website, using Angular was an ungodly stupid choice. Generating simple HTML shouldn't be that hard, it should Just Work™.
 
 When I got fed up of the complexity of Angular and ASP.NET and all the communication between the two, I started learning Ruby on Rails. During that time, I stumbled on this wonderful [Ruby and Rails blog](https://www.writesoftwarewell.com/) run by [Akshay Khot](https://www.linkedin.com/in/akshaykhot03). Since I wanted a similar website for myself, I started using Ghost and deployed it on the freeplan on Fly. However, during this time, I published a couple of more arcticles, everything was going well until, one day, I got a email notification from Fly that my website has crashed and restarted. And it became frequent (ofcourse, what else do you expect from freeplan).
 
@@ -26,7 +26,8 @@ I wanted to give [Jekyll](https://jekyllrb.com/) a try but I had bad experiences
 So I gave it a try, and to be honest, it just works. Wanna use `.liquid`, `.erb` or any other templating engine? You can use it without any additional configuration.
 
 There is this quote on Bridgetown's homepage and it couldn't be more true.
-> Bridgetown is so cool. It’s the most fun I’ve had outside of Rails in a long time. [@_williamkennedy](https://twitter.com/_williamkennedy/status/1323023702502658049?s=21)
+
+> Bridgetown is so cool. It’s the most fun I’ve had outside of Rails in a long time. [@\_williamkennedy](https://twitter.com/_williamkennedy/status/1323023702502658049?s=21)
 
 Bridgetown really is fun to work with. Thank you [Bridgetown](https://www.bridgetownrb.com/community#:~:text=Say%20Hello%20to,%E2%80%A2%20%40adrianvalenz).
 
