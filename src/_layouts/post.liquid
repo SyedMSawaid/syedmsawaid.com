@@ -1,6 +1,12 @@
 ---
 layout: default
 ---
-<h1>{{ data.title }}</h1>
+<h1 class="">{{ data.title }}</h1>
 
-{{ content }}
+{{ data.date }}
+
+{{ page.content | reading_time }} minutes
+
+<div>
+  {{ content }}
+</div>

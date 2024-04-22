@@ -10,23 +10,23 @@ title: Posts
   {% assign post_year = post.data.date | date: '%Y' %}
   {% assign post_month = post.data.date | date: '%B' %}
 
-  {% if current_month != post_month %}
-    </ul>
-  {% endif %}
-
   {% if current_year != post_year %}
-    <h2>{{ post_year }}</h2>
+    <h2 class="text-left text-xl font-normal py-2 pt-6 m-0">{{ post_year }}</h2>
     {% assign current_year = post_year %}
     {% assign current_month = '' %}
   {% endif %}
 
   {% if current_month != post_month %}
-    <h3>{{ post_month }}</h3>
     {% assign current_month = post_month %}
-    <ul>
   {% endif %}
 
-  <li>
-    <span>{{ post.date | date: '%B %d, %Y' }}</span> » <a href="{{ post.relative_url }}">{{ post.data.title }}</a>
+  <li class="flex gap-x-4">
+    <div class="flex w-28 gap-x-1">
+      <span class="grow">{{ post.date | date: '%b' }}</span>
+      <span>{{ post.date | date: '%d,' }}</span>
+      <span>{{ post.date | date: '%Y' }}</span>
+    </div>
+
+    <a href="{{ post.relative_url }}">{{ post.data.title }}</a>
   </li>
 {% endfor %}
