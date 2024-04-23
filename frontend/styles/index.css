@@ -79,15 +79,15 @@ main {
   }
 
   & > h2 {
-    @apply mt-10 mb-2 text-2xl font-medium text-left;
+    @apply mt-10 mb-2 text-2xl font-medium text-left first:mt-0;
   }
 
   & > h3 {
-    @apply mt-5 mb-2 text-xl font-medium text-left;
+    @apply mt-5 mb-2 text-xl font-medium text-left first:mt-0;
   }
 
   & > ul {
-    @apply mb-6;
+    @apply mb-6 first:mt-0;
   }
 }
 
