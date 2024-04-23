@@ -104,3 +104,20 @@ blockquote {
   padding: 0.5em 10px;
   quotes: "\201C""\201D""\2018""\2019";
 }
+
+/* GoodReads Widget Styles */
+.gr_grid_container {
+  /* customize grid container div here. eg: width: 500px; */
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+  row-gap: 8px;
+  flex-wrap: wrap;
+}
+
+.gr_grid_book_container {
+  /* customize book cover container div here */
+  height: 130px;
+  width: 98px;
+  overflow: hidden;
+}
