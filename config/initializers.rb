@@ -60,4 +60,8 @@ Bridgetown.configure do |config|
 
   # For more documentation on how to configure your site using this initializers file,
   # visit: https://edge.bridgetownrb.com/docs/configuration/initializers/
+
+  # For internal linking between docs
+  init :bridgetown_internal_markdown_links
+  config.internal_markdown_links.collections = ["posts"]
 end

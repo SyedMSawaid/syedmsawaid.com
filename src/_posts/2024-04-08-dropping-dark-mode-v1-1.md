@@ -5,7 +5,7 @@ date: 2024-04-08 09:49:18 +0500
 tag:
 ---
 
-It has been 1 week and apart from a couple of days, I haven't really followed up on [my goals and habits](https://syedmsawaid.com/2024/03/31/goals-for-april-2024-dark-mode-v1-1/). Currently, there is too much going on in my life. I am in a process of moving to another country and getting all the documents ready is no joke, especially if you are from Pakistan.
+It has been 1 week and apart from a couple of days, I haven't really followed up on [my goals and habits](_posts/2024-03-31-goals-for-april-2024-dark-mode-v1-1.md). Currently, there is too much going on in my life. I am in a process of moving to another country and getting all the documents ready is no joke, especially if you are from Pakistan.
 
 These obligations along with failing my daily tasks were stressing me out. Pair that with anxiety and now I feel paralyzed like deer caught in the headlights. Plus more things are coming up as I prepare myself to leave for Germany.
 

@@ -1,14 +1,14 @@
 ---
 layout: post
 title: On Minimalism and Launching Fast
-date:   2023-09-30 00:00:00 +0500
-tag: 
+date: 2023-09-30 00:00:00 +0500
+tag:
   - software
 ---
 
 I didn't understood the value of minimalism and launching fast until I wanted to launch my blog.
 
-For quite sometime, [I wanted to be a better writer](https://www.syedmsawaid.com/blog/you-have-to-write-more-to-write-better). I had a blog on fly.io, which would crash almost every couple of week. (It was running ghost on free plan)
+For quite sometime, [I wanted to be a better writer](_posts/2022-05-13-write-mote-to-write-better.md). I had a blog on fly.io, which would crash almost every couple of week. (It was running ghost on free plan)
 
 I wanted to move to Astro and do my own thing. Looking for inspiration, I stumbled on lots of different personal blogs like [Marco Roth](https://marcoroth.dev/) and [Avi Flombaum](http://avi.nyc/). I started designing my personal website but always lost the motivation to complete it.
 
