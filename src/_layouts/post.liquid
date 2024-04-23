@@ -2,15 +2,13 @@
 layout: default
 ---
 <div class="mb-10">
-  <h1 class="text-left font-medium m-0 text-3xl">{{ data.title }}</h1>
+  <h1 class="m-0 text-3xl font-medium text-left">{{ data.title }}</h1>
 
-  <div class="flex gap-x-2 text-xl">
+  <div class="flex text-xl gap-x-2">
     <div>{{ data.date | date: '%B %d, %Y' }}</div>
     <div>·</div>
     <div>{{ page.content | reading_time }} minutes</div>
   </div>
 </div>
 
-<div>
-  {{ content }}
-</div>
+{{ content }}

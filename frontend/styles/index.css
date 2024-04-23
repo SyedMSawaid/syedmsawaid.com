@@ -79,18 +79,16 @@ main {
     padding: 16px 16px 50px;
   }
 
-  & > div {
-    & > h2 {
-      @apply mt-10 mb-2 text-2xl font-medium text-left;
-    }
+  & > h2 {
+    @apply mt-10 mb-2 text-2xl font-medium text-left;
+  }
 
-    & > h3 {
-      @apply mt-5 mb-2 text-xl font-medium text-left;
-    }
+  & > h3 {
+    @apply mt-5 mb-2 text-xl font-medium text-left;
+  }
 
-    & > ul {
-      @apply pb-6;
-    }
+  & > ul {
+    @apply pb-6;
   }
 }
 
