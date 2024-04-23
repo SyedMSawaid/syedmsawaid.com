@@ -23,12 +23,13 @@ layout: default
 <h2>Books</h2>
 {% assign reading_books = site.data.books | where: 'status', 'reading' %}
 
-<p>Currently, I am reading these books</p>
+<p>Currently, I am reading these books.</p>
 <ul>
   {% for book in reading_books %}
     <li>{{ book.title }} by {{ book.authors }}</li>
   {% endfor %}
 </ul>
+<p><a href="{{ '/books' | relative_url }}">Here is list</a> of all the books I am reading or have read.</p>
 
 {% comment %} Some Favourite Books {% endcomment %}
 {% comment %} Add Some Favourite Posts {% endcomment %}
