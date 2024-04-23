@@ -67,13 +67,12 @@ body > header img {
 }
 
 main {
+  @apply bg-white rounded-lg shadow-2xl;
+
   margin: 2rem auto 4rem;
   max-width: 50rem;
   min-height: calc(100vh - 200px);
   padding: 25px 25px 50px;
-  background: white;
-  box-shadow: 2px 3px 3px #ddd;
-  border-radius: 3px;
 
   @media (max-width: 500px) {
     padding: 16px 16px 50px;
@@ -88,7 +87,7 @@ main {
   }
 
   & > ul {
-    @apply pb-6;
+    @apply mb-6;
   }
 }
 
