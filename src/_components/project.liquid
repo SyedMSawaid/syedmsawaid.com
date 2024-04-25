@@ -1,0 +1,25 @@
+<div class="px-4 py-4 border rounded-lg grow">
+  <div>{{ project.name }}</div>
+
+  <div>Status: {{ project.status | capitalize }}</div>
+
+  <div class="flex gap-x-2">
+    <div>Techstack:</div>
+
+    <div class="flex gap-2">
+      {% for tech in project.techstack %}
+        <div class="px-2 bg-red-300 rounded-lg">{{ tech }}</div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="flex gap-x-2">
+    <div>Tags:</div>
+
+    <div class="flex gap-2">
+      {% for tag in project.tags %}
+        <div class="px-2 bg-green-300 rounded-lg">{{ tag }}</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

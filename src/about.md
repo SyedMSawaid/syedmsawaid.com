@@ -3,14 +3,14 @@ layout: page
 title: About
 ---
 
-I'm a software engineer, programmer and designer. I'm also a vlogger, gamer, Pakistani, and a bunch of other things. A few links to explore:
+Hello, I am Sawaid.
 
-- [Writing](posts)
+I am a Software Engineer based in Pakistan. Currently, I work at [GeeksPod](https://geekspod.co/) as a Senior Software Engineer.
+
+I use this website to share my ideas, notes and things I'm working on.
+
+A few links to explore:
+
+- [Articles](posts)
 - [Projects](projects)
 - [What I’m doing now](now)
-
-My background is in Software Engineering. I studied software engineering with specialization in Web Technologies and Machine Learning from [COMSATS University Islamabad](http://www.comsats.edu.pk/). In 2021, I started my career with [TEO International Islamabad](https://www.teo-intl.com/) which shaped my professional work. There, I worked on a number of projects, internally and for customers, making a positive impact on a broader audience beyond myself. It inspired me to build meaningfully products for the better internet.
-
-I currently work as Senior Software Engineer at [GeeksPod](https://www.geekspod.co/).
-
-I use this website to share my ideas, notes and research on things I'm working on, mostly in the realms of technology, design, and education.

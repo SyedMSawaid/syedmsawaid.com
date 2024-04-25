@@ -2,6 +2,15 @@
 layout: default
 title: Now
 ---
+<h2>What I am building</h2>
+{% assign active_projects = site.data.projects | where: 'status', 'active' %}
+<ul>
+  {% for project in active_projects %}
+    <li>{{ project.name }}</li>
+  {% endfor %}
+</ul>
+<p>Here is list of <a href="{{ '/projects' | relative_url }}">all my projects</a>.</p>
+
 <h2>What I'm reading</h2>
 
 {% render 'books/currently_reading' %}

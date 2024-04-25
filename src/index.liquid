@@ -1,43 +1,50 @@
 ---
 layout: default
 ---
-{% assign lastest_post = collections.posts.resources | sort: 'date' | last %}
+{% comment %}
+  {% assign lastest_post = collections.posts.resources | sort: 'date' | last %}
+  <p>
+    Hi, my name is Sawaid. I am a Software Engineer based in Pakistan. I work at
+    <a href="https://geekspod.co/">GeeksPod</a> as a Senior Software Engineer.
+  </p>
 
-<p>
-  Hi, my name is Sawaid. I am a Software Engineer based in Pakistan. I work at
-  <a href="https://geekspod.co/">GeeksPod</a> as a Senior Software Engineer.
-</p>
+  <p>
+    This is my blog where I share my learnings in life and otherwise. My latest post is
+    <a href="{{ lastest_post.relative_url }}">{{ lastest_post.data.title }}</a>.
+  </p>
+{% endcomment %}
 
-<p>
-  This is my blog where I share my learnings in life and otherwise. My latest post is
-  <a href="{{ lastest_post.relative_url }}">{{ lastest_post.data.title }}</a>.
-</p>
-
-<p>
-  I stream on <a href="https://www.twitch.tv/syedmsawaid">Twitch</a> while building my side projects hoping one day I
-  will get to share them with the world. Currently I am building a Journaling app for myself.
-</p>
+{% comment %}
+  <p>
+    I stream on <a href="https://www.twitch.tv/syedmsawaid">Twitch</a> while building my side projects hoping one day I
+    will get to share them with the world. Currently I am building a Journaling app for myself.
+  </p>
+{% endcomment %}
 
 {% comment %} Add Some Favourite Books {% endcomment %}
 
-<h2>Books</h2>
-{% assign reading_books = site.data.books | where: 'status', 'reading' %}
+{% comment %}
+  <h2>Books</h2>
+  {% assign reading_books = site.data.books | where: 'status', 'reading' %}
 
-<p>Currently, I am reading these books.</p>
-<ul>
-  {% for book in reading_books %}
-    <li>{{ book.title }} by {{ book.authors }}</li>
-  {% endfor %}
-</ul>
-<p><a href="{{ '/books' | relative_url }}">Here is list</a> of all the books I am reading or have read.</p>
+  <p>Currently, I am reading these books.</p>
+  <ul>
+    {% for book in reading_books %}
+      <li>{{ book.title }} by {{ book.authors }}</li>
+    {% endfor %}
+  </ul>
+  <p><a href="{{ '/books' | relative_url }}">Here is list</a> of all the books I am reading or have read.</p>
+{% endcomment %}
 
 {% comment %} Some Favourite Books {% endcomment %}
 {% comment %} Add Some Favourite Posts {% endcomment %}
 
-<h2>Connect with me</h2>
+{% comment %}
+  <h2>Connect with me</h2>
 
-<p>
-  You can follow me on <a href="https://twitter.com/SyedMSawaid" target="_blank">Twitter</a>,
-  <a href="https://www.youtube.com/@SyedMSawaid" target="_blank">Youtube</a> and
-  <a href="{{ '/connect' | relative_url }}">other socials</a>.
-</p>
+  <p>
+    You can follow me on <a href="https://twitter.com/SyedMSawaid" target="_blank">Twitter</a>,
+    <a href="https://www.youtube.com/@SyedMSawaid" target="_blank">Youtube</a> and
+    <a href="{{ '/connect' | relative_url }}">other socials</a>.
+  </p>
+{% endcomment %}
