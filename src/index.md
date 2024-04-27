@@ -1,6 +1,5 @@
 ---
-layout: page
-title: About
+layout: default
 ---
 
 Hello, I am Sawaid.
@@ -14,3 +13,9 @@ A few links to explore:
 - [Articles](posts)
 - [Projects](projects)
 - [What I’m doing now](now)
+
+# Connect with me
+
+You can follow me on <a href="https://twitter.com/SyedMSawaid" target="_blank">Twitter</a>,
+<a href="https://www.youtube.com/@SyedMSawaid" target="_blank">Youtube</a> and
+<a href="{{ '/connect' | relative_url }}">other socials</a>.
