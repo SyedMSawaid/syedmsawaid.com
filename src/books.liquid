@@ -1,9 +1,10 @@
 ---
 layout: default
 ---
-<h1>Books I am currently reading</h1>
-<ul>
-  {% for book in site.data.books | where: "status", "reading" %}
-    <li>{{ book.title }} by {{ book.authors }}</li>
-  {% endfor %}
-</ul>
+<h2>Books I am currently reading</h2>
+{% render 'books/currently_reading' %}
+
+{% comment %} <h2 id="books-i-have-notes-on">Books I have notes on</h2> {% endcomment %}
+
+<h2 id="books-i-have-read">Books I have read</h2>
+{% render 'books/already_read' %}

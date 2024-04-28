@@ -17,7 +17,7 @@ For this dark mode, the goal and habits I have selected are,
 
 ### Occupational
 
-**GOAL:** Learn desiging from [DesignCourse.com](https://designcourse.com/) and complete the first version of [Notebook BYC](https://www.backyardcode.com/).
+Goal: Learn desiging from [DesignCourse.com](https://designcourse.com/) and complete the first version of [Notebook BYC](https://www.backyardcode.com/).
 
 The first version of Notebook BYC will have the following features;
 
@@ -28,14 +28,14 @@ The first version of Notebook BYC will have the following features;
 
 ### Physical
 
-**HABIT:** Avoid sugar, carbs and fried food.
+Habit: Avoid sugar, carbs and fried food.
 
 _Fun Fact: I am 107 kgs right now (I was 125 kgs in January 2024 💀)._
 
 ### Mental
 
-**HABIT:** Meditate everyday for 10 minutes.
+Habit: Meditate everyday for 10 minutes.
 
 ### Expressive
 
-**HABIT:** Write articles for 10 minutes.
+Habit: Write articles for 10 minutes.

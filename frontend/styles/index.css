@@ -1,5 +1,14 @@
+/* If you need to add @import statements, do so up here */
+
+@import "jit-refresh.css"; /* triggers frontend rebuilds */
+
+/* Set up Tailwind imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --body-background: #f2f2f2;
+  --body-background: #fffcf0;
   --body-color: #444;
   --heading-color: black;
   --action-color: #d64045;
@@ -23,21 +32,27 @@ a {
 }
 
 h1 {
-  margin: 1rem 0 3rem;
-  text-align: center;
-  font-weight: 900;
-  font-size: 2.5rem;
-  color: var(--heading-color);
-  line-height: 1.2;
+  @apply mb-5 text-3xl font-medium text-left;
 }
 
 h2 {
-  margin: 1rem 0 3rem;
-  text-align: center;
-  font-weight: 900;
-  font-size: 2rem;
-  color: var(--heading-color);
-  line-height: 1.2;
+  @apply mt-10 mb-2 text-2xl font-medium text-left;
+}
+
+p {
+  @apply mb-5 text-xl;
+}
+
+ul {
+  @apply pl-6 list-disc list-outside;
+}
+
+li {
+  @apply text-xl;
+}
+
+details > summary {
+  @apply text-xl;
 }
 
 body > header {
@@ -51,39 +66,29 @@ body > header img {
   max-width: 100%;
 }
 
-body > nav ul {
-  margin: 2rem 0;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
-body > nav a {
-  text-decoration: none;
-}
-
 main {
+  @apply bg-white rounded-lg shadow-2xl;
+
   margin: 2rem auto 4rem;
   max-width: 50rem;
   min-height: calc(100vh - 200px);
   padding: 25px 25px 50px;
-  background: white;
-  box-shadow: 2px 3px 3px #ddd;
-  border-radius: 3px;
 
   @media (max-width: 500px) {
     padding: 16px 16px 50px;
   }
-}
 
-footer {
-  text-align: center;
-  margin-bottom: 4rem;
-  font-size: 1em;
+  & > h2 {
+    @apply mt-10 mb-2 text-2xl font-medium text-left first:mt-0;
+  }
+
+  & > h3 {
+    @apply mt-5 mb-2 text-xl font-medium text-left first:mt-0;
+  }
+
+  & > ul {
+    @apply mb-6 first:mt-0;
+  }
 }
 
 hr {
@@ -98,4 +103,21 @@ blockquote {
   margin: 1.5em 10px;
   padding: 0.5em 10px;
   quotes: "\201C""\201D""\2018""\2019";
+}
+
+/* GoodReads Widget Styles */
+.gr_grid_container {
+  /* customize grid container div here. eg: width: 500px; */
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+  row-gap: 8px;
+  flex-wrap: wrap;
+}
+
+.gr_grid_book_container {
+  /* customize book cover container div here */
+  height: 130px;
+  width: 98px;
+  overflow: hidden;
 }

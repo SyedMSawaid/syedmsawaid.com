@@ -1,0 +1,19 @@
+- name: Sprint
+  since: 2023
+  status: abandoned
+  techstack:
+    - Ruby on Rails
+    - Hotwire
+  tags:
+    - Paid
+    - Closed Source
+
+- name: Notebook
+  since: 2024
+  status: active
+  techstack:
+    - Ruby on Rails
+    - Hotwire
+  tags:
+    - Paid
+    - Closed Source

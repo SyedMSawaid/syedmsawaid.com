@@ -5,7 +5,7 @@ date: 2024-03-31 14:43:28 +0500
 tag:
 ---
 
-This dark mode is going to be the same as the [previous one](https://syedmsawaid.com/2024/03/11/goals-for-march-2024/) with only one small change. For expressiveness, I will be streaming on [Twitch](https://www.twitch.tv/syedmsawaid). This will allow me to work on my project as well as express my thoughts and feelings while building audience at the same time.
+This dark mode is going to be the same as the [previous one](_posts/2024-03-11-goals-for-march-2024.md) with only one small change. For expressiveness, I will be streaming on [Twitch](https://www.twitch.tv/syedmsawaid). This will allow me to work on my project as well as express my thoughts and feelings while building audience at the same time.
 
 ## Dark Mode v1.1 Objectives
 

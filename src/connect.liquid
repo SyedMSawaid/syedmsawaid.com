@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<h1>Connect with me</h1>
+<ul>
+  {% for social in site.data.socials %}
+    <li>
+      {{ social.name }}:
+      <a href="{{ social.link }}" target="_blank">{{ social.username }}</a>
+    </li>
+  {% endfor %}
+</ul>

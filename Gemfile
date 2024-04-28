@@ -36,3 +36,5 @@ gem "puma", "< 7"
 # gem "nokolexbor", "~> 0.4"
 
 gem "colorize", "~> 1.1"
+
+gem "bridgetown_internal_markdown_links", "~> 0.2.0"

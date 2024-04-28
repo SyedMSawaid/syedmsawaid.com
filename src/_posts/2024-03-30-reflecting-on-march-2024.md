@@ -5,7 +5,7 @@ date: 2024-03-30 04:16:38 +0500
 tag:
 ---
 
-On March 10, 2024, I set [some goals for myself for this month](https://syedmsawaid.com/2024/03/11/goals-for-march-2024/). I wanted to achieve one goal and instill 3 habits. And I failed horribly. At first, I thought I should just delete that post and pretend that nothing happened but I will be lying to myself if I did that.
+On March 10, 2024, I set [some goals for myself for this month](_posts/2024-03-11-goals-for-march-2024.md). I wanted to achieve one goal and instill 3 habits. And I failed horribly. At first, I thought I should just delete that post and pretend that nothing happened but I will be lying to myself if I did that.
 
 I had this same sort of episode before where I set goals for myself and I ended up abandoning them.
 

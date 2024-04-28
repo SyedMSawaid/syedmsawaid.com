@@ -1,0 +1,21 @@
+---
+layout: default
+title: Projects
+---
+<h1>Projects</h1>
+
+<h2>Active Projects</h2>
+{% assign active_projects = site.data.projects | where: 'status', 'active' %}
+<div class="flex flex-col justify-between gap-x-2">
+  {% for project in active_projects %}
+    {% render 'project', project: project %}
+  {% endfor %}
+</div>
+
+<h2>Abandoned Projects</h2>
+{% assign abandoned_projects = site.data.projects | where: 'status', 'abandoned' %}
+<div class="flex flex-col justify-between gap-x-2">
+  {% for project in abandoned_projects %}
+    {% render 'project', project: project %}
+  {% endfor %}
+</div>
