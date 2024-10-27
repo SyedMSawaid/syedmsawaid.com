@@ -31,3 +31,7 @@ template_engine: liquid
 # timezone: America/Los_Angeles
 # pagination:
 #   enabled: true
+
+collections:
+  projects:
+    output: true

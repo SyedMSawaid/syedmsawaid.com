@@ -1,0 +1,15 @@
+---
+layout: default
+title: Projects
+---
+
+<h1>Projects</h1>
+
+<div class="projects-grid">
+  <% collections.projects.resources.each do |project| %>
+    <div class="project-card">
+      <h2><a href="<%= project.relative_url %>"><%= project.data.title %></a></h2>
+      <p><%= project.data.description %></p>
+    </div>
+  <% end %>
+</div>

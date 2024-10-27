@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+<article class="project">
+  <h1><%= resource.data.title %></h1>
+  <% if resource.data.image %>
+    <img src="/images/<%= resource.data.image %>" alt="<%= resource.data.title %>">
+  <% end %>
+
+  <% if resource.data.github %>
+    <div>Here is its GitHub <%= resource.data.github %></div>
+  <% end %>
+
+  <div class="project-description">
+    <%= resource.data.description %>
+  </div>
+  <% if resource.data.tech_stack %>
+    <div class="tech-stack">
+      <h2>Technologies Used:</h2>
+      <ul>
+        <% resource.data.tech_stack.each do |tech| %>
+          <li><%= tech %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="project-content">
+    <%= yield %>
+  </div>
+</article>
