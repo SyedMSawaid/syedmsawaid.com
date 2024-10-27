@@ -8,7 +8,7 @@ tech_stack:
   - Ruby
   - Rails
   - Inertia.js
-
+launched: 2024
 ---
 
 Inertia Flow moves prop building from controllers folder to views folder keeping the controllers clean and slim.
