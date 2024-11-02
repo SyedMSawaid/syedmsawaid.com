@@ -9,9 +9,7 @@ tech_stack:
 - React
 - Recoil
 launched: 2022
-state:
-  - Active
-  - Maintained
+state: Active
 ---
 
 Detailed content about Project Two goes here...

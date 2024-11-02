@@ -9,8 +9,7 @@ tech_stack:
   - Rails
   - Hotwire
 launched: 2024
-state:
-  - In Development
+state: In Development
 ---
 
 Learn to Speak English Fluently

@@ -5,11 +5,11 @@ title: Projects
 
 <h1>Projects</h1>
 
-<div class="projects-grid">
+<div class="flex flex-col gap-y-4">
   <% collections.projects.resources.sorted_by_launch_date.each do |project| %>
     <div class="project-card">
-      <h2><a href="<%= project.relative_url %>"><%= project.data.title %></a></h2>
-      <p><%= project.data.description %></p>
+      <h2 class="p-0 m-0"><a href="<%= project.relative_url %>"><%= project.data.title %></a></h2>
+      <p class="p-0 m-0"><%= project.data.description %></p>
     </div>
   <% end %>
 </div>

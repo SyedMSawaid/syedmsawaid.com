@@ -31,13 +31,8 @@ layout: default
   <% end %>
 
   <% if resource.data.tech_stack %>
-    <div class="tech-stack">
-      <h2>Technologies Used:</h2>
-      <ul>
-        <% resource.data.tech_stack.each do |tech| %>
-          <li><%= tech %></li>
-        <% end %>
-      </ul>
+    <div class="flex flex-row items-center py-6 tech-stack gap-x-4">
+      <p class="p-0 m-0">Technologies used in this project are <%= resource.data.tech_stack.to_sentence %></p>
     </div>
   <% end %>
 
