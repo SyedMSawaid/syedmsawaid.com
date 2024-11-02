@@ -2,12 +2,15 @@
 layout: project
 title: Speak English
 description: Learn to speak english fluently
-url: https://speakenglish.syedmsawaid.com
+links:
+- Web App: https://speakenglish.syedmsawaid.com
 tech_stack:
   - Ruby
   - Rails
   - Hotwire
 launched: 2024
+state:
+  - In Development
 ---
 
 Learn to Speak English Fluently

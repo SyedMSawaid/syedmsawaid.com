@@ -2,13 +2,17 @@
 layout: project
 title: Inertia Flow
 description: Extension library for Inertia-Rails
-github: https://github.com/syedmsawaid/inertia_flow
-url: https://github.com/syedmsawaid/inertia_flow
+links:
+- GitHub: https://github.com/syedmsawaid/inertia_flow
+- RubyGems: https://github.com/syedmsawaid/inertia_flow
 tech_stack:
   - Ruby
   - Rails
   - Inertia.js
 launched: 2024
+state:
+  - Maintained
+  - Active
 ---
 
 Inertia Flow moves prop building from controllers folder to views folder keeping the controllers clean and slim.

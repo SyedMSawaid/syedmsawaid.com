@@ -3,18 +3,33 @@ layout: default
 ---
 
 <article class="project">
-  <h1><%= resource.data.title %></h1>
-  <% if resource.data.image %>
-    <img src="/images/<%= resource.data.image %>" alt="<%= resource.data.title %>">
-  <% end %>
 
-  <% if resource.data.github %>
-    <div>Here is its GitHub <%= resource.data.github %></div>
-  <% end %>
+  <div class="flex flex-col items-center gap-2 pb-4">
+    <h1 class="p-0 m-0 font-serif text-center"><%= resource.data.title %></h1>
 
-  <div class="project-description">
-    <%= resource.data.description %>
+    <div class="text-center project-description">
+      <%= resource.data.description %>
+    </div>
   </div>
+
+  <% if resource.data.links %>
+    <div class="flex flex-row items-center gap-x-2">
+      <% resource.data.links.each do |link| %>
+        <a href="<%= link.values.first %>" 
+          target="_blank" 
+          class="flex flex-row items-center justify-center mx-auto border-2 rounded gap-x-1 grow hover:border-red-400 hover:border-2">
+          <%= link.keys.first %>
+
+          <% if ["GitHub", "Source Code"].include?(link.keys.first) %>
+            <%= render "github_icon", size: 20 %>
+          <% else %>
+            <%= render "link_icon", size:  20 %>
+          <% end%>
+        </a>
+      <% end %>
+    </div>
+  <% end %>
+
   <% if resource.data.tech_stack %>
     <div class="tech-stack">
       <h2>Technologies Used:</h2>
@@ -25,6 +40,7 @@ layout: default
       </ul>
     </div>
   <% end %>
+
   <div class="project-content">
     <%= yield %>
   </div>
