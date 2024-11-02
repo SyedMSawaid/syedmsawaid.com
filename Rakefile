@@ -86,7 +86,7 @@ def file_content type:, title:, at:
 layout: #{type}
 title:  #{title}
 date:   #{at}
-tag:
+tags:
 ---
 )
 end

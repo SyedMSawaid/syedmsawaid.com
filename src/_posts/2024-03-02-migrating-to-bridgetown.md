@@ -2,7 +2,7 @@
 layout: post
 title: Migrating to Bridgetown
 date: 2024-03-02 20:43:48 +0500
-tag:
+tags:
   - blogging
   - writing
 ---

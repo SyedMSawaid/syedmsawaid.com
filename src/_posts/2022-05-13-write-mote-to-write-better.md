@@ -2,7 +2,7 @@
 layout: post
 title: Write More to Write Better
 date: 2022-05-13 00:00:00 +0500
-tag:
+tags:
   - writing
 ---
 

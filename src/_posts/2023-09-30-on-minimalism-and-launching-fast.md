@@ -2,7 +2,7 @@
 layout: post
 title: On Minimalism and Launching Fast
 date: 2023-09-30 00:00:00 +0500
-tag:
+tags:
   - software
 ---
 

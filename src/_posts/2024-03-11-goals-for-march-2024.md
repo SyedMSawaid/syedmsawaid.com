@@ -3,7 +3,7 @@ layout: post
 title: Goals for March 2024 (Dark Mode V1)
 date: 2024-03-11 22:39:14 +0500
 published: false
-tag:
+tags:
 ---
 
 After beating around the bush for so long, I think it is time for me to focus on achieving my goals. Goals that I had back in 2022. This is so sad that it took me almost 2 years to get to work on these goals. How can I expect to change my life when I don't even work for it.
