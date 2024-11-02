@@ -9,6 +9,7 @@ tech_stack:
 - React
 - Recoil
 launched: 2022
+type: SaaS
 state: Active
 ---
 

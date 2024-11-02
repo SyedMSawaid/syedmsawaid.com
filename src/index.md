@@ -2,20 +2,25 @@
 layout: default
 ---
 
-Hello, I am Sawaid.
+Hi, I am **Syed Muhammad Sawaid.**
 
-I am a Software Engineer based in Pakistan. Currently, I work at [GeeksPod](https://geekspod.co/) as a Senior Software Engineer.
+I am Software Engineer, Film Maker and an aspiring entrepreneur, currently based in beautiful town of Marburg, Germany.
 
-I use this website to share my ideas, notes and things I'm working on.
+I am doing Masters in Data Science from Philipps University Marburg.
 
-A few links to explore:
+In my free-time, I read, [write](posts), [code](software) and [film](film).
 
-- [Articles](posts)
-- [Projects](projects)
-- [What I’m doing now](now)
+Here is my current software projects I am working on
+- Speak English
 
-# Connect with me
+Here is the latest video I made
+- Pull it from your ass
 
-You can follow me on <a href="https://twitter.com/SyedMSawaid" target="_blank">Twitter</a>,
-<a href="https://www.youtube.com/@SyedMSawaid" target="_blank">Youtube</a> and
-<a href="{{ '/connect' | relative_url }}">other socials</a>.
+Here are some of my latest writings
+- Some latest posts, or popular ones
+
+I would love to hear from you. You can contact me:
+
+- Email: me@evanhahn.com
+- Mastodon: @EvanHahn@bigshoulders.city
+- other ways

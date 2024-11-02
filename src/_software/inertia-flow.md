@@ -10,6 +10,7 @@ tech_stack:
   - Rails
   - Inertia.js
 launched: 2024
+type: Library
 state: Active
 ---
 

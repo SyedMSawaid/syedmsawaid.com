@@ -33,5 +33,5 @@ template_engine: liquid
 #   enabled: true
 
 collections:
-  projects:
+  software:
     output: true

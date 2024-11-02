@@ -9,6 +9,7 @@ tech_stack:
   - Rails
   - Hotwire
 launched: 2024
+type: SaaS
 state: In Development
 ---
 
