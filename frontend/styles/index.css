@@ -14,7 +14,7 @@
 }
 
 a {
-  @apply underline decoration-red-600 hover:text-red-600;
+  @apply text-red-700 underline decoration-red-300 hover:bg-red-300;
 }
 
 h1 {
@@ -23,6 +23,10 @@ h1 {
 
 h2 {
   @apply mt-10 mb-2 text-2xl font-medium text-left;
+}
+
+ul p {
+  @apply mb-0;
 }
 
 p {

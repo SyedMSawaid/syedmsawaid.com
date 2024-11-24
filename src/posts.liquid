@@ -1,32 +1,31 @@
 ---
 layout: page
-title: Posts
+title: Writing
 ---
 {% assign sorted_posts = collections.posts.resources | sort: 'date' | reverse %}
 {% assign current_year = '' %}
-{% assign current_month = '' %}
-
 {% for post in sorted_posts %}
   {% assign post_year = post.data.date | date: '%Y' %}
-  {% assign post_month = post.data.date | date: '%B' %}
-
   {% if current_year != post_year %}
-    <h2 class="py-2 pt-6 m-0 text-xl font-normal text-left">{{ post_year }}</h2>
-    {% assign current_year = post_year %}
-    {% assign current_month = '' %}
+    {% if current_year != '' %}
+      </ul>
+      </div>
+    {% endif %}
+    <div class="pb-10">
+      <h2 class="py-2 m-0 text-3xl font-bold text-center">{{ post_year }}</h2>
+      <ul class="p-0 m-0 list-none">
+        {% assign current_year = post_year %}
   {% endif %}
-
-  {% if current_month != post_month %}
-    {% assign current_month = post_month %}
-  {% endif %}
-
   <li class="flex gap-x-4">
     <div class="flex w-28 gap-x-1">
       <span class="grow">{{ post.date | date: '%b' }}</span>
       <span>{{ post.date | date: '%d,' }}</span>
       <span>{{ post.date | date: '%Y' }}</span>
     </div>
-
     <a href="{{ post.relative_url }}">{{ post.data.title }}</a>
   </li>
 {% endfor %}
+{% if sorted_posts.size > 0 %}
+  </ul>
+  </div>
+{% endif %}
