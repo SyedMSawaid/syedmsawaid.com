@@ -2,6 +2,8 @@
 layout: page
 title: Writing
 ---
+<p>I write about life, programming, security, hacking, and everything else that piques my interest.</p>
+
 {% assign sorted_posts = collections.posts.resources | sort: 'date' | reverse %}
 {% assign current_year = '' %}
 {% for post in sorted_posts %}

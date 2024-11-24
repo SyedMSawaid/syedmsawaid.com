@@ -64,6 +64,14 @@ code {
   @apply bg-gray-200 px-1 py-0.5 rounded;
 }
 
+pre {
+  @apply text-wrap mb-8;
+}
+
+pre.highlight {
+  @apply bg-gray-200 p-4 rounded;
+}
+
 main {
   margin: 2rem auto 4rem;
   min-height: calc(100vh - 200px);
