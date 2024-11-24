@@ -50,7 +50,7 @@ end
 #   end
 # end
 
-
+# bundle exec rake create post "My New Post"
 desc "Create a new resource"
 task :create do |task|
   rake_task, type, title = ARGV
