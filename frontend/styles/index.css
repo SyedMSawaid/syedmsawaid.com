@@ -60,6 +60,10 @@ body > header img {
   max-width: 100%;
 }
 
+code {
+  @apply bg-gray-200 px-1 py-0.5 rounded;
+}
+
 main {
   margin: 2rem auto 4rem;
   min-height: calc(100vh - 200px);
