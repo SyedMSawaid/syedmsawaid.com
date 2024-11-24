@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<article class="project">
+
+  <div class="flex flex-col items-center gap-2 pb-4">
+    <h1 class="p-0 m-0 font-serif text-center"><%= resource.data.title %></h1>
+
+    <div class="text-center project-description">
+      <%= resource.data.description %>
+    </div>
+  </div>
+
+  <% if resource.data.links %>
+    <div class="flex flex-row items-center gap-x-2">
+      <% resource.data.links.each do |link| %>
+        <a href="<%= link.values.first %>" 
+          target="_blank" 
+          class="flex flex-row items-center justify-center mx-auto border-2 rounded gap-x-1 grow hover:border-red-400 hover:border-2">
+          <%= link.keys.first %>
+
+          <% if ["GitHub", "Source Code"].include?(link.keys.first) %>
+            <%= render "github_icon", size: 20 %>
+          <% else %>
+            <%= render "link_icon", size:  20 %>
+          <% end%>
+        </a>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if resource.data.tech_stack %>
+    <div class="flex flex-row items-center py-6 tech-stack gap-x-4">
+      <p class="p-0 m-0">Technologies used in this project are <%= resource.data.tech_stack.to_sentence %></p>
+    </div>
+  <% end %>
+
+  <div class="project-content">
+    <%= yield %>
+  </div>
+</article>

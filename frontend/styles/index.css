@@ -8,27 +8,13 @@
 @tailwind utilities;
 
 :root {
-  --body-background: #fffcf0;
+  --body-background: #fff;
   --body-color: #444;
   --heading-color: black;
-  --action-color: #d64045;
-}
-
-body {
-  background: var(--body-background);
-  color: var(--body-color);
-  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    "Helvetica", "Arial", sans-serif;
-  margin: 0 8px;
-  font-size: 108%;
-  line-height: 1.5;
 }
 
 a {
-  color: var(--action-color);
-  text-decoration: underline;
-  text-decoration-color: #ffb088;
+  @apply text-red-700 underline decoration-red-300 hover:bg-red-300;
 }
 
 h1 {
@@ -39,8 +25,12 @@ h2 {
   @apply mt-10 mb-2 text-2xl font-medium text-left;
 }
 
+ul p {
+  @apply mb-0;
+}
+
 p {
-  @apply mb-5 text-xl;
+  @apply mb-8 text-xl;
 }
 
 ul {
@@ -49,6 +39,10 @@ ul {
 
 li {
   @apply text-xl;
+}
+
+strong {
+  @apply font-bold;
 }
 
 details > summary {
@@ -67,12 +61,8 @@ body > header img {
 }
 
 main {
-  @apply bg-white rounded-lg shadow-2xl;
-
   margin: 2rem auto 4rem;
-  max-width: 50rem;
   min-height: calc(100vh - 200px);
-  padding: 25px 25px 50px;
 
   @media (max-width: 500px) {
     padding: 16px 16px 50px;
