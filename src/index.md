@@ -21,7 +21,7 @@ Here is the latest video I made
 Here are some of my latest writings
 
 {% for post in collections.posts.resources limit:3 %}
-- ["{{ post.title }}"]({{ post.url }})
+- ["{{ post.title }}"]({{ post.relative_url }})
 {% endfor %}
 - [read more](/posts)
 
