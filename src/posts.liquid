@@ -15,11 +15,11 @@ title: Writing
     {% endif %}
     <div class="pb-10">
       <h2 class="py-2 m-0 text-3xl font-bold text-center">{{ post_year }}</h2>
-      <ul class="p-0 m-0 list-none">
+      <ul class="flex flex-col gap-2 p-0 m-0 list-none">
         {% assign current_year = post_year %}
   {% endif %}
-  <li class="flex gap-x-4">
-    <div class="flex w-28 gap-x-1">
+  <li class="flex flex-col-reverse sm:flex-row gap-x-4">
+    <div class="flex w-8 text-base text-neutral-400 sm:text-xl sm:w-28 gap-x-1">
       <span class="grow">{{ post.date | date: '%b' }}</span>
       <span>{{ post.date | date: '%d,' }}</span>
       <span>{{ post.date | date: '%Y' }}</span>
