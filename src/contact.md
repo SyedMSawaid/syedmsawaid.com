@@ -7,7 +7,7 @@ The best way to reach out to me is through email. I might not respond immediatel
 
 Best way to contact me:
 
-- Email: me@SyedMSawaid.com
+- Email: [hi@syedmsawaid.com](mailto:hi@syedmsawaid.com)
 - Bluesky: [@syedmsawaid.com](https://bsky.app/profile/syedmsawaid.com){:target="_blank"}
 
 Some of my other online profiles:

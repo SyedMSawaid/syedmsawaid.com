@@ -27,6 +27,6 @@ Here are some of my latest writings
 
 I would love to hear from you. You can contact me:
 
-- Email: me@SyedMSawaid.com
+- Email: [hi@syedmsawaid.com](mailto:hi@syedmsawaid.com)
 - Bluesky: [@syedmsawaid.com](https://bsky.app/profile/syedmsawaid.com){:target="_blank"}
 - [other ways](/contact)
