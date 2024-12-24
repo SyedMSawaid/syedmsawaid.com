@@ -33,6 +33,15 @@ p {
   @apply mb-8 text-xl;
 }
 
+table {
+  @apply mb-8;
+}
+
+th,
+td {
+  @apply border border-black px-4;
+}
+
 ul {
   @apply pl-6 list-disc list-outside;
 }
