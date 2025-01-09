@@ -5,7 +5,6 @@
   "scripts": {
     "esbuild": "node esbuild.config.js --minify",
     "esbuild-dev": "node esbuild.config.js --watch",
-    "prepare": "husky",
     "dev": "bin/bridgetown s"
   },
   "devDependencies": {
