@@ -9,8 +9,6 @@
     "dev": "bin/bridgetown s"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.0.3",
-    "@commitlint/config-conventional": "^19.0.3",
     "esbuild": "^0.19.2",
     "glob": "^10.3.3",
     "postcss": "^8.4.29",
