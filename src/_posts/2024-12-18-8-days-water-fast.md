@@ -77,7 +77,7 @@ To counter this, brush your teeth twice a day (you should do this regardless) an
 
 This dramatically improves your bad breath. You might not even feel it.
 
-## Exercise
+### Exercise
 
 You shouldn’t be exercising when you are fasting. Your body is having a hard time keeping you alive, do not drag it more. Have light walk here and there, or to the supermarket but don’t go crazy with it.
 

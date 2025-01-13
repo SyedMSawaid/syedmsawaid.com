@@ -4,30 +4,29 @@ title: Writing
 ---
 <p>I write about life, programming, security, hacking, and everything else that piques my interest.</p>
 
-{% assign sorted_posts = collections.posts.resources | sort: 'date' | reverse %}
-{% assign current_year = '' %}
-{% for post in sorted_posts %}
-  {% assign post_year = post.data.date | date: '%Y' %}
-  {% if current_year != post_year %}
-    {% if current_year != '' %}
-      </ul>
-      </div>
-    {% endif %}
-    <div class="pb-10">
-      <h2 class="py-2 m-0 text-3xl font-bold text-center">{{ post_year }}</h2>
-      <ul class="flex flex-col gap-2 p-0 m-0 list-none">
-        {% assign current_year = post_year %}
-  {% endif %}
-  <li class="flex flex-col-reverse sm:flex-row gap-x-4">
-    <div class="flex w-8 text-base text-neutral-400 sm:text-xl sm:w-28 gap-x-1">
-      <span class="grow">{{ post.date | date: '%b' }}</span>
-      <span>{{ post.date | date: '%d,' }}</span>
-      <span>{{ post.date | date: '%Y' }}</span>
-    </div>
-    <a href="{{ post.relative_url }}">{{ post.data.title }}</a>
-  </li>
-{% endfor %}
-{% if sorted_posts.size > 0 %}
+<div class="pb-10">
+  <ul class="flex flex-col items-center justify-center gap-4 p-0 m-0 list-none">
+    {% for post in collections.posts.resources %}
+      <li class="flex flex-col items-center justify-center gap-4 p-6 not-last:border-black not-last:border-b-2 post w-blog-content">
+        <div class="flex flex-col gap-8">
+          <div class="flex flex-col items-center justify-center">
+            <h2 class="!text-center">
+              <a href="{{ post.relative_url }}" class="no-underline">{{ post.title }}</a>
+            </h2>
+            <time class="text-lg italic font-bold tracking-tighter uppercase">
+              {{ post.data.date | date: '%B %d, %Y' }}
+            </time>
+          </div>
+
+          <div>
+            {{ post.content | truncatewords: 80 }}
+          </div>
+        </div>
+
+        <div class="px-2 py-0.5 uppercase tracking-tighter italic font-bold max-w-fit">
+          <a href="{{ post.relative_url }}" class="no-underline">Keep reading</a>
+        </div>
+      </li>
+    {% endfor %}
   </ul>
-  </div>
-{% endif %}
+</div>

@@ -21,12 +21,14 @@ a {
   @apply text-red-700 underline decoration-red-300 hover:bg-red-300;
 }
 
-h1 {
-  @apply mb-5 text-3xl font-medium text-left;
-}
+.post {
+  h2 {
+    @apply mt-10 mb-2 text-5xl font-bold text-left;
+  }
 
-h2 {
-  @apply mt-10 mb-2 text-2xl font-medium text-left;
+  h3 {
+    @apply text-4xl font-semibold;
+  }
 }
 
 ul p {
