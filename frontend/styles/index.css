@@ -13,6 +13,10 @@
   --heading-color: black;
 }
 
+body {
+  @apply tracking-tight;
+}
+
 a {
   @apply text-red-700 underline decoration-red-300 hover:bg-red-300;
 }
@@ -30,7 +34,7 @@ ul p {
 }
 
 p {
-  @apply mb-8 text-xl;
+  @apply mb-8 text-2xl;
 }
 
 table {
@@ -39,7 +43,7 @@ table {
 
 th,
 td {
-  @apply border border-black px-4;
+  @apply px-4 border border-black;
 }
 
 ul {
@@ -74,11 +78,11 @@ code {
 }
 
 pre {
-  @apply text-wrap mb-8;
+  @apply mb-8 text-wrap;
 }
 
 pre.highlight {
-  @apply bg-gray-200 p-4 rounded;
+  @apply p-4 bg-gray-200 rounded;
 }
 
 main {

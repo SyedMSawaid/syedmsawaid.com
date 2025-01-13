@@ -5,7 +5,15 @@ module.exports = {
     "./frontend/javascript/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['"Source Serif 4"', "serif"], // Replacing the default font
+      },
+      width: {
+        "blog-content": "840px",
+        "blog-title": "960px",
+      },
+    },
   },
   plugins: [],
 };
