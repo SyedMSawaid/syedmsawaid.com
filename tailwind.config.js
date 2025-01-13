@@ -15,6 +15,9 @@ module.exports = {
         "blog-content": "840px",
         "blog-title": "960px",
       },
+      colors: {
+        primary: "",
+      },
     },
   },
   plugins: [
