@@ -13,16 +13,26 @@
   --heading-color: black;
 }
 
-a {
-  @apply text-red-700 underline decoration-red-300 hover:bg-red-300;
-}
-
-h1 {
-  @apply mb-5 text-3xl font-medium text-left;
+body {
+  @apply text-lg tracking-tight lg:text-2xl;
 }
 
 h2 {
-  @apply mt-10 mb-2 text-2xl font-medium text-left;
+  @apply mt-10 mb-2 text-2xl font-semibold text-left md:text-3xl;
+}
+
+a {
+  @apply text-red-700 underline hover:text-black;
+}
+
+.post {
+  h2 {
+    @apply mt-10 mb-2 font-bold text-left md:text-5xl;
+  }
+
+  h3 {
+    @apply text-xl font-semibold md:text-4xl;
+  }
 }
 
 ul p {
@@ -30,7 +40,7 @@ ul p {
 }
 
 p {
-  @apply mb-8 text-xl;
+  @apply mb-8;
 }
 
 table {
@@ -39,15 +49,11 @@ table {
 
 th,
 td {
-  @apply border border-black px-4;
+  @apply px-4 border border-black;
 }
 
 ul {
   @apply pl-6 list-disc list-outside;
-}
-
-li {
-  @apply text-xl;
 }
 
 strong {
@@ -74,14 +80,14 @@ code {
 }
 
 pre {
-  @apply text-wrap mb-8;
+  @apply mb-8 text-wrap;
 }
 
 pre.highlight {
-  @apply bg-gray-200 p-4 rounded;
+  @apply p-4 bg-gray-200 rounded;
 }
 
-main {
+/* main {
   margin: 2rem auto 4rem;
   min-height: calc(100vh - 200px);
 
@@ -100,7 +106,7 @@ main {
   & > ul {
     @apply mb-6 first:mt-0;
   }
-}
+} */
 
 hr {
   border: none;
