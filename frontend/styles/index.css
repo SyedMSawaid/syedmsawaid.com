@@ -14,11 +14,11 @@
 }
 
 body {
-  @apply text-2xl tracking-tight;
+  @apply text-lg tracking-tight lg:text-2xl;
 }
 
 h2 {
-  @apply mt-10 mb-2 text-3xl font-semibold text-left;
+  @apply mt-10 mb-2 text-2xl font-semibold text-left md:text-3xl;
 }
 
 a {
@@ -27,11 +27,11 @@ a {
 
 .post {
   h2 {
-    @apply mt-10 mb-2 text-5xl font-bold text-left;
+    @apply mt-10 mb-2 font-bold text-left md:text-5xl;
   }
 
   h3 {
-    @apply text-4xl font-semibold;
+    @apply text-xl font-semibold md:text-4xl;
   }
 }
 
@@ -40,7 +40,7 @@ ul p {
 }
 
 p {
-  @apply mb-8 text-2xl;
+  @apply mb-8;
 }
 
 table {
@@ -87,7 +87,7 @@ pre.highlight {
   @apply p-4 bg-gray-200 rounded;
 }
 
-main {
+/* main {
   margin: 2rem auto 4rem;
   min-height: calc(100vh - 200px);
 
@@ -106,7 +106,7 @@ main {
   & > ul {
     @apply mb-6 first:mt-0;
   }
-}
+} */
 
 hr {
   border: none;

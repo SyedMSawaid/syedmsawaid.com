@@ -2,17 +2,19 @@
 layout: default
 ---
 <div class="flex flex-col items-center justify-center">
-  <div class="flex flex-col items-center justify-center w-blog-title">
-    <h1 class="py-16 m-0 font-black tracking-tighter text-center text-7xl">{{ data.title }}</h1>
+  <div class="flex flex-col items-center justify-center lg:w-title">
+    <h1 class="py-3 pt-10 m-0 text-3xl font-black tracking-tighter text-center md:py-16 md:text-7xl">
+      {{ data.title }}
+    </h1>
 
-    <div class="flex pb-16 text-lg italic font-bold tracking-tighter uppercase gap-x-2">
+    <div class="flex pb-6 text-sm italic font-bold tracking-tighter uppercase md:pb-16 md:text-lg gap-x-2">
       <time>{{ data.date | date: '%B %d, %Y' }}</time>
       <span>/</span>
       <span>{{ page.content | reading_time }} minutes</span>
     </div>
   </div>
 
-  <div class="flex flex-col w-blog-content post">
+  <div class="flex flex-col lg:w-content post">
     {{ content }}
   </div>
 </div>

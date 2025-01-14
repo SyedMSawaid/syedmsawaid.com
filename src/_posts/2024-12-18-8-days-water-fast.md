@@ -98,5 +98,5 @@ For you, it might be different. Better to look on the Internet or ask your docto
 
 ## Further Reading
 
-- [https://www.reddit.com/r/fasting/wiki](https://www.reddit.com/r/fasting/wiki)
-- [https://bsky.app/profile/syedmsawaid.com/post/3lclqlp37ds2y](https://bsky.app/profile/syedmsawaid.com/post/3lclqlp37ds2y)
+- [r/fasting Wiki](https://www.reddit.com/r/fasting/wiki)
+- [My Bsky weight loss journey](https://bsky.app/profile/syedmsawaid.com/post/3lclqlp37ds2y)

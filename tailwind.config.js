@@ -12,8 +12,8 @@ module.exports = {
         sans: ['"Source Serif 4"', "serif"], // Replacing the default font
       },
       width: {
-        "blog-content": "840px",
-        "blog-title": "960px",
+        content: "840px",
+        title: "960px",
       },
       colors: {
         primary: "",
