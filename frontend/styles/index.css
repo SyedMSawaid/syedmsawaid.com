@@ -17,6 +17,10 @@ body {
   @apply text-2xl tracking-tight;
 }
 
+h2 {
+  @apply mt-10 mb-2 text-3xl font-semibold text-left;
+}
+
 a {
   @apply text-red-700 underline hover:text-black;
 }
