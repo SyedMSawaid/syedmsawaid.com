@@ -33,6 +33,10 @@ a {
   h3 {
     @apply text-xl font-semibold md:text-4xl;
   }
+
+  p {
+    @apply mb-8;
+  }
 }
 
 ul p {
