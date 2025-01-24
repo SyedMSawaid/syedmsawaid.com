@@ -17,7 +17,7 @@
 # https://learnxinyminutes.com/docs/yaml/
 #
 
-url: "" # the base hostname & protocol for your site, e.g. https://example.com
+url: "https://syedmsawaid.com" # the base hostname & protocol for your site, e.g. https://example.com
 
 permalink: pretty
 template_engine: liquid
@@ -29,9 +29,12 @@ template_engine: liquid
 # update `publicPath`.
 
 # timezone: America/Los_Angeles
-# pagination:
-#   enabled: true
+pagination:
+ enabled: true
 
 collections:
   software:
     output: true
+  books:
+    output: true
+    permalink: "/books/:path/"

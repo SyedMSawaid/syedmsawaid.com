@@ -7,6 +7,10 @@ class DateTags < SiteBuilder
     liquid_tag :website_version do
       "v.#{Date.today.year}.#{two_digit Date.today.month}"
     end
+
+    liquid_tag :updated_on do
+      "#{Date.today.strftime("%B %d, %Y")}"
+    end
   end
 
   private

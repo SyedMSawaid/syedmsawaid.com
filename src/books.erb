@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<h1>HI BRo</h1>
+
+<ul>
+  <% book_names = book_ids = site.collections.books.resources.map {
+    |b| b.id.split("_books/").last.split("/").first.titlecase
+  }.uniq %>
+  <%#= binding.irb %>
+  <% book_names.each do |book_title| %>
+    <li>
+      <a href="/books/<%= book_title.parameterize %>"><%= book_title %></a>
+    </li>
+  <% end %>
+</ul>
