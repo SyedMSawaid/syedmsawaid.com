@@ -38,3 +38,5 @@ gem "puma", "< 7"
 gem "colorize", "~> 1.1"
 
 gem "bridgetown_internal_markdown_links", "~> 0.2.0"
+
+gem "bridgetown-feed", "~> 3.1"

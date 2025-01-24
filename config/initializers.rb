@@ -64,4 +64,6 @@ Bridgetown.configure do |config|
   # For internal linking between docs
   init :bridgetown_internal_markdown_links
   config.internal_markdown_links.collections = ["posts"]
+
+  init :"bridgetown-feed"
 end

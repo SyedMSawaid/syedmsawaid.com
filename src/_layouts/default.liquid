@@ -3,6 +3,7 @@
   <head>
     {% render 'analytics' %}
     {% render 'head', metadata: site.metadata, title: data.title %}
+    {% feed_meta %}
   </head>
   <body class="flex flex-col items-center justify-center">
     {% render 'no_script' %}
