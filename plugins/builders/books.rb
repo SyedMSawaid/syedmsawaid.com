@@ -10,6 +10,7 @@ class Builders::Books < SiteBuilder
   def add_layout_to_book_chapters
     site.collections.books.resources.each do |chapter|
       chapter.data.layout = "default"
+      chapter.content = "#{chapter.content}\n#{stimulus_controller("reading", values: {chapter: 1})}"
     end
   end
 
@@ -36,6 +37,13 @@ class Builders::Books < SiteBuilder
 <ul>
  #{chapters.map { |chapter| "<li><a href='#{chapter.relative_url}'>#{chapter.data.title}</a></li>" }.join}
 </ul>
+    HTML
+  end
+
+  def stimulus_controller(name, values: {})
+    values = values.map { |k, v| "data-#{name}-#{k}-value='#{v}'" }.join(", ")
+    <<-HTML
+<div data-controller='#{name}' #{values}></div>
     HTML
   end
 end

@@ -3,7 +3,7 @@ layout: default
 ---
 <h1>HI BRo</h1>
 
-<ul>
+<ul data-controller="bookmark">
   <% book_names = book_ids = site.collections.books.resources.map {
     |b| b.id.split("_books/").last.split("/").first.titlecase
   }.uniq %>
