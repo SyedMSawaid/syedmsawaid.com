@@ -8,7 +8,7 @@ tech_stack:
   - Ruby
   - Rails
   - Hotwire
-launched: 2024
+launched: 2025
 type: SaaS
 state: In Development
 ---
