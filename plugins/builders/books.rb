@@ -40,6 +40,7 @@ class Builders::Books < SiteBuilder
  #{chapters.map { |chapter| 
       "<li class='chapter' data-controller='chapter' data-chapter-id-value='#{chapter.id}'>
         <a href='#{chapter.relative_url}'>#{chapter.data.title}</a>
+        <div data-chapter-target='bookmark'></div>
        </li>" 
     }.join }
 </ul>

@@ -5,7 +5,10 @@ export default class extends Controller {
     id: String
   }
 
+  static targets = ["bookmark"];
+
   connect() {
+    console.log({target: this.bookmarkTarget})
   }
 
   get id() {
@@ -14,5 +17,6 @@ export default class extends Controller {
 
   markActive() {
     console.log("markActive", this.id);
+    this.bookmarkTarget.textContent = "Your MOM is fat";
   }
 }
