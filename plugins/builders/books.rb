@@ -2,7 +2,7 @@
 class Builders::Books < SiteBuilder
   def build
     generator do
-      generate_page_for_books
+      generate_page_of_content
       add_layout_to_book_chapters
     end
   end
@@ -10,11 +10,13 @@ class Builders::Books < SiteBuilder
   def add_layout_to_book_chapters
     site.collections.books.resources.each do |chapter|
       chapter.data.layout = "default"
-      chapter.content = "#{chapter.content}\n#{stimulus_controller("reading", values: {chapter: 1})}"
+      chapter.content = "#{chapter.content}\n#{stimulus_controller(
+        "reading",
+        values: {id: chapter.id, book: chapter.id.split("_books/").last.split("/").first})}"
     end
   end
 
-  def generate_page_for_books
+  def generate_page_of_content
     book_ids = site.collections.books.resources.map {
       |b| b.id.split("_books/").last.split("/").first
     }.uniq
@@ -34,14 +36,18 @@ class Builders::Books < SiteBuilder
     chapters = site.collections.books.resources.select { |b| b.id.include? book }
 
     <<-HTML
-<ul>
- #{chapters.map { |chapter| "<li><a href='#{chapter.relative_url}'>#{chapter.data.title}</a></li>" }.join}
+<ul data-controller="bookmark" data-bookmark-chapter-outlet='.chapter' data-bookmark-book-value="#{book}">
+ #{chapters.map { |chapter| 
+      "<li class='chapter' data-controller='chapter' data-chapter-id-value='#{chapter.id}'>
+        <a href='#{chapter.relative_url}'>#{chapter.data.title}</a>
+       </li>" 
+    }.join }
 </ul>
     HTML
   end
 
   def stimulus_controller(name, values: {})
-    values = values.map { |k, v| "data-#{name}-#{k}-value='#{v}'" }.join(", ")
+    values = values.map { |k, v| "data-#{name}-#{k}-value='#{v}'" }.join(" ")
     <<-HTML
 <div data-controller='#{name}' #{values}></div>
     HTML
