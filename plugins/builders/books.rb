@@ -2,76 +2,122 @@
 class Builders::Books < SiteBuilder
   def initialize(name = nil, current_site = nil)
     super
-    @books = Hash.new
+    @books = []
   end
 
   def build
     generator do
-      generate_page_of_content
-      add_layout_to_book_chapters
+      create_book_objects
+      generate_books
     end
   end
 
-  def add_layout_to_book_chapters
-    site.collections.books.resources.each do |chapter|
-      chapter.data.layout = "chapter"
-      chapter.data.book_title = get_book_title(chapter)
-      chapter.data.book_link = get_book_link(chapter)
-      chapter.content = "#{chapter.content}\n#{stimulus_controller(
-        "reading",
-        values: {id: chapter.id, book: chapter.id.split("_books/").last.split("/").first})}"
-    end
-  end
-
-  def get_book_link(chapter)
-    @books.each do |book_id, book_resource|
-      return book_resource.relative_url if chapter.id.include? book_id
-    end
-  end
-
-  def get_book_title(chapter)
-    chapter.id.split("_books/").last.split("/").first.titlecase
-  end
-
-  def generate_page_of_content
+  def create_book_objects
     book_ids = site.collections.books.resources.map {
       |b| b.id.split("_books/").last.split("/").first
     }.uniq
 
-    book_ids.each do |book|
-      content = create_chapters_list_for(book)
-
-      generated_book = add_resource :book, "books/#{book}.md" do
-        layout :book
-        title book.titlecase
+    book_ids.each do |book_id|
+      generated_book = add_resource :book, "books/#{book_id}.md" do
         permalink "/books/:slug/"
-        content content
       end
 
-      @books[book] = generated_book
+      chapters = site.collections.books.resources.select { |b| b.id.include? book_id }
+
+      book = Book.new(generated_book, chapters: chapters)
+      @books << book
     end
   end
 
-  def create_chapters_list_for(book)
-    chapters = site.collections.books.resources.select { |b| b.id.include? book }
+  def generate_books
+    @books.each(&:generate)
+  end
+end
 
+# noinspection ALL
+class Book
+  attr_accessor :name, :resource, :chapters
+  delegate :id, to: :resource
+  alias_method :title, :name
+
+  def initialize(book, chapters:)
+    @resource = book
+    @chapters = []
+    @name = slug.titleize
+
+    chapters.each do |chapter|
+      @chapters << Chapter.new(chapter, self)
+    end
+  end
+
+  def slug
+    id.split("/").last.split(".md").first
+  end
+
+  def link
+    resource.relative_url
+  end
+
+  def add_chapter(chapter)
+    @chapters << chapter
+  end
+
+  def generate
+    resource.data.layout = :book
+    resource.data.title = title
+    resource.content = content
+
+    chapters.each(&:generate)
+  end
+
+  def content
     <<-HTML
-<ul data-controller="bookmark" data-bookmark-chapter-outlet='.chapter' data-bookmark-book-value="#{book}">
- #{chapters.map { |chapter| 
+<ul data-controller="bookmark" data-bookmark-chapter-outlet='.chapter' data-bookmark-book-value="#{slug}">
+ #{chapters.map { |chapter|
       "<li class='chapter' data-controller='chapter' data-chapter-id-value='#{chapter.id}'>
-        <a href='#{chapter.relative_url}'>#{chapter.data.title}</a>
+        <a href='#{chapter.link}'>#{chapter.title}</a>
         <div>your mom</div>
         <div data-chapter-target='bookmark'></div>
-       </li>" 
+       </li>"
     }.join }
 </ul>
     HTML
   end
+end
 
-  def stimulus_controller(name, values: {})
-    values = values.map { |k, v| "data-#{name}-#{k}-value='#{v}'" }.join(" ")
-    <<-HTML
-<div data-controller='#{name}' #{values}></div>
-    HTML
+# noinspection ALL
+class Chapter
+  attr_accessor :name, :slug, :resource, :book
+  delegate :id, :data, to: :resource
+
+  def initialize(chapter, book)
+    @resource = chapter
+    @book = book
+  end
+
+  def link
+    resource.relative_url
+  end
+
+  def title
+    data.title
+  end
+
+  def next_chapter
+  end
+
+  def generate
+    resource.data.layout = "chapter"
+    resource.data.book_title = book.name
+    resource.data.book_link = book.link
+    resource.data.next_chapter_title = nil
+    resource.data.next_chapter_link = nil
+    resource.content = <<-HTML
+#{resource.content}
+<div data-controller="reading"
+     data-reading-id-value="#{id}"
+     data-reading-book-value="#{id.split("_books/").last.split("/").first}">
+</div>
+HTML
   end
 end
