@@ -10,6 +10,10 @@ layout: default
   <strong>{{ page.title }}</strong>
 </div>
 
-
-
 {{ content }}
+
+{% if page.next_chapter_title %}
+  <a href="{{ page.next_chapter_link }}">Next: {{ page.next_chapter_title }}</a>
+{% else %}
+  <a href="{{ page.book_link }}">Table of contents: {{ page.book_title }}</a>
+{% endif %}

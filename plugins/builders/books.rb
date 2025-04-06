@@ -13,20 +13,12 @@ class Builders::Books < SiteBuilder
   end
 
   def create_book_objects
-    book_ids = site.collections.books.resources.map {
-      |b| b.id.split("_books/").last.split("/").first
-    }.uniq
-
-    book_ids.each do |book_id|
-      generated_book = add_resource :book, "books/#{book_id}.md" do
-        permalink "/books/:slug/"
-      end
-
-      chapters = site.collections.books.resources.select { |b| b.id.include? book_id }
-
-      book = Book.new(generated_book, chapters: chapters)
-      @books << book
-    end
+    site.collections.books.resources
+        .group_by { |b| b.id.split("_books/").last.split("/").first }
+        .each do |book_id, chapters|
+          resource = add_resource(:book, "books/#{book_id}.md") { permalink "/books/:slug/" }
+          @books << Book.new(resource, chapters: chapters)
+        end
   end
 
   def generate_books
@@ -56,10 +48,6 @@ class Book
 
   def link
     resource.relative_url
-  end
-
-  def add_chapter(chapter)
-    @chapters << chapter
   end
 
   def generate
@@ -104,14 +92,15 @@ class Chapter
   end
 
   def next_chapter
+    book.chapters[book.chapters.index(self) + 1]
   end
 
   def generate
     resource.data.layout = "chapter"
     resource.data.book_title = book.name
     resource.data.book_link = book.link
-    resource.data.next_chapter_title = nil
-    resource.data.next_chapter_link = nil
+    resource.data.next_chapter_title = next_chapter&.title
+    resource.data.next_chapter_link = next_chapter&.link
     resource.content = <<-HTML
 #{resource.content}
 <div data-controller="reading"
