@@ -38,7 +38,7 @@ class Book
     @name = slug.titleize
 
     chapters.each do |chapter|
-      @chapters << Chapter.new(chapter, self)
+      @chapters << Chapter.new(chapter, book: self)
     end
   end
 
@@ -62,25 +62,53 @@ class Book
     <<-HTML
 <ul data-controller="bookmark" data-bookmark-chapter-outlet='.chapter' data-bookmark-book-value="#{slug}">
  #{chapters.map { |chapter|
-      "<li class='chapter' data-controller='chapter' data-chapter-id-value='#{chapter.id}'>
-        <a href='#{chapter.link}'>#{chapter.title}</a>
-        <div>your mom</div>
-        <div data-chapter-target='bookmark'></div>
-       </li>"
+      li chapter
     }.join }
 </ul>
     HTML
+  end
+
+  def li(chapter)
+    <<-HTML
+<li class='chapter flex justify-between items-end gap-4'
+    data-controller='chapter'
+    data-chapter-id-value='#{chapter.id}'
+    data-chapter-ellipsis-class="text-orange-500"
+    data-chapter-bookmark-class="fill-orange-500 w-8 px-0.5"
+>
+  <a href='#{chapter.link}' class="text-nowrap">#{chapter.title}</a>
+  <span class="grow overflow-hidden text-sm" data-chapter-target="ellipsis">............................................................................................................................................................................................................................................................................................................................................................................................................</span>
+  <span class="text-nowrap">#{chapter.word_count}</span>
+</li>
+HTML
   end
 end
 
 # noinspection ALL
 class Chapter
-  attr_accessor :name, :slug, :resource, :book
+  attr_accessor :name, :slug, :resource, :book, :word_count
   delegate :id, :data, to: :resource
 
-  def initialize(chapter, book)
+  def initialize(chapter, book:)
     @resource = chapter
     @book = book
+
+    # Populate the word count before adding the stimulus controller
+    calculate_word_count
+  end
+
+  def calculate_word_count
+    words_array = resource.content.split - %w[ # ]
+    @word_count = words_array.size
+  end
+
+  def delimited_word_count
+    @word_count.to_fs(:delimited)
+  end
+
+  def word_count
+    return "#{delimited_word_count} words" if @word_count > 1
+    return "#{delimited_word_count} word"
   end
 
   def link
@@ -101,11 +129,12 @@ class Chapter
     resource.data.book_link = book.link
     resource.data.next_chapter_title = next_chapter&.title
     resource.data.next_chapter_link = next_chapter&.link
+    resource.data.word_count = word_count
     resource.content = <<-HTML
 #{resource.content}
 <div data-controller="reading"
      data-reading-id-value="#{id}"
-     data-reading-book-value="#{id.split("_books/").last.split("/").first}">
+     data-reading-book-value="#{book.slug}">
 </div>
 HTML
   end
