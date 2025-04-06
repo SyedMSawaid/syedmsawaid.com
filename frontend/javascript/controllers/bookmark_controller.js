@@ -10,7 +10,7 @@ export default class extends Controller {
   }
 
   #bookmarkCurrentChapter() {
-    this.bookmarkedChapter?.markActive();
+    this.bookmarkedChapter?.mark();
   }
 
   get currentChapter() {

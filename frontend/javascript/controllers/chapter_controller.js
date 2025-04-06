@@ -15,7 +15,7 @@ export default class extends Controller {
     return this.idValue;
   }
 
-  markActive() {
+  mark() {
     const bookmark = document.createElement("span");
     bookmark.innerHTML = this.#bookmarkSvg();
     bookmark.classList.add(...this.bookmarkClasses);

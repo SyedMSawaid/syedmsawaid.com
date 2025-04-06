@@ -70,6 +70,7 @@ class Book
     HTML
   end
 
+  # TODO: may be convert these into compenents or partials.
   def li(chapter)
     <<-HTML
 <li class='chapter flex justify-between items-end gap-4'
