@@ -2,14 +2,16 @@
 layout: default
 ---
 
-<ul>
+<ul class="list-none flex gap-6 py-10">
   <% book_names = book_ids = site.collections.books.resources.map {
     |b| b.id.split("_books/").last.split("/").first.titlecase
   }.uniq %>
-  <%#= binding.irb %>
   <% book_names.each do |book_title| %>
     <li>
-      <a href="/books/<%= book_title.parameterize %>"><%= book_title %></a>
+      <a class="flex flex-col gap-2" href="/books/<%= book_title.parameterize %>">
+        <div class="w-[236px] h-[378px] border rounded"></div>
+        <div class="text-center"><%= book_title %></div>
+      </a>
     </li>
   <% end %>
 </ul>
