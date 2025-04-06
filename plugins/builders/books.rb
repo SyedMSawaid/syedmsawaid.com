@@ -1,3 +1,5 @@
+require 'active_support/core_ext/numeric/conversions'
+
 # frozen_string_literal: true
 class Builders::Books < SiteBuilder
   def initialize(name = nil, current_site = nil)
