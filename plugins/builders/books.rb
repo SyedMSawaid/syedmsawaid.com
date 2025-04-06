@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 class Builders::Books < SiteBuilder
+  def initialize(name = nil, current_site = nil)
+    super
+    @books = Hash.new
+  end
+
   def build
     generator do
       generate_page_of_content
@@ -9,11 +14,23 @@ class Builders::Books < SiteBuilder
 
   def add_layout_to_book_chapters
     site.collections.books.resources.each do |chapter|
-      chapter.data.layout = "default"
+      chapter.data.layout = "chapter"
+      chapter.data.book_title = get_book_title(chapter)
+      chapter.data.book_link = get_book_link(chapter)
       chapter.content = "#{chapter.content}\n#{stimulus_controller(
         "reading",
         values: {id: chapter.id, book: chapter.id.split("_books/").last.split("/").first})}"
     end
+  end
+
+  def get_book_link(chapter)
+    @books.each do |book_id, book_resource|
+      return book_resource.relative_url if chapter.id.include? book_id
+    end
+  end
+
+  def get_book_title(chapter)
+    chapter.id.split("_books/").last.split("/").first.titlecase
   end
 
   def generate_page_of_content
@@ -23,12 +40,15 @@ class Builders::Books < SiteBuilder
 
     book_ids.each do |book|
       content = create_chapters_list_for(book)
-      add_resource :book, "books/#{book}.md" do
-        layout :default
+
+      generated_book = add_resource :book, "books/#{book}.md" do
+        layout :book
         title book.titlecase
         permalink "/books/:slug/"
         content content
       end
+
+      @books[book] = generated_book
     end
   end
 
@@ -40,6 +60,7 @@ class Builders::Books < SiteBuilder
  #{chapters.map { |chapter| 
       "<li class='chapter' data-controller='chapter' data-chapter-id-value='#{chapter.id}'>
         <a href='#{chapter.relative_url}'>#{chapter.data.title}</a>
+        <div>your mom</div>
         <div data-chapter-target='bookmark'></div>
        </li>" 
     }.join }
