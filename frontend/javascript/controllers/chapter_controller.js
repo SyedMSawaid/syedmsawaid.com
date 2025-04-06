@@ -25,9 +25,17 @@ export default class extends Controller {
 
   #bookmarkSvg() {
     return `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-        <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-        <path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"/></svg>
+       <svg xmlns="http://www.w3.org/2000/svg" 
+            width="24" 
+            height="24" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            class="lucide lucide-bookmark-icon lucide-bookmark">
+          <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+        </svg>
 `
   }
 }
