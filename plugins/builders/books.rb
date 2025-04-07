@@ -36,8 +36,7 @@ HTML
 <li data-controller="book" data-book-id-value="#{book.id}" data-book-chapters-value="#{chapters_json}" >
   <a class="flex flex-col gap-2 w-[236px] max-w-[236px]" href="#{book.link}">
     <div class="h-[378px] border rounded relative box-border" data-book-target="cover">
-      <div >
-      </div>
+      <img src="#{book.cover}" class="h-[378px] w-[236px] rounded">
     </div>
     <div class="text-center">#{book.name}</div>
     <div class="text-sm text-center">#{authors book}</div>
@@ -69,7 +68,7 @@ end
 
 # noinspection ALL
 class Book
-  attr_accessor :name, :subtitle, :authors, :resource, :meta, :chapters
+  attr_accessor :name, :subtitle, :authors, :cover, :resource, :meta, :chapters
   delegate :id, to: :resource
   alias_method :title, :name
 
@@ -83,6 +82,11 @@ class Book
     end
 
     extract_metadata
+  end
+
+  #TODO: support other formats as well.
+  def cover
+    "#{resource.path.split(".").first}/cover.png"
   end
 
   def authors?
