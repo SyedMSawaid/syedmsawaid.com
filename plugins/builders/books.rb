@@ -39,14 +39,10 @@ HTML
       <img src="#{book.cover}" class="h-[378px] w-[236px] rounded">
     </div>
     <div class="text-center">#{book.name}</div>
-    <div class="text-sm text-center">#{authors book}</div>
+    <div class="text-sm text-center">#{book.authors}</div>
   </a>
 </li>
 HTML
-  end
-
-  def authors(book)
-    "by #{book.authors.join(", ")}" if book.authors?
   end
 
   def create_book_objects
@@ -86,11 +82,15 @@ class Book
 
   #TODO: support other formats as well.
   def cover
-    "#{resource.path.split(".").first}/cover.png"
+    "/#{resource.path.split(".").first}/cover.png"
   end
 
   def authors?
     @authors.present?
+  end
+
+  def authors
+    "by #{@authors.join(', ')}" if authors?
   end
 
   def extract_metadata
@@ -114,6 +114,9 @@ class Book
   def generate
     resource.data.layout = :book
     resource.data.title = title
+    resource.data.cover = cover
+    resource.data.subtitle = subtitle
+    resource.data.authors = authors
     resource.content = content
 
     chapters.each(&:generate)
@@ -121,7 +124,7 @@ class Book
 
   def content
     <<-HTML
-<ul data-controller="bookmark" data-bookmark-chapter-outlet='.chapter' data-bookmark-book-value="#{id}">
+<ul class="pl-0" data-controller="bookmark" data-bookmark-chapter-outlet='.chapter' data-bookmark-book-value="#{id}">
  #{chapters.map { |chapter|
       li chapter
     }.join }

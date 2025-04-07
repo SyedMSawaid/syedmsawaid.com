@@ -8,8 +8,19 @@ layout: default
   <strong>{{ page.title }}</strong>
 </div>
 
-<div class="flex justify-center items-center gap-2 py-10">
-  <h1 class="text-6xl font-bold">{{ page.title }}</h1>
-</div>
 
-{{ content }}
+<div class="flex gap-8">
+  <div class="w-1/4">
+    <img src="{{ page.data.cover }}" alt="{{ page.title }}" class="rounded" />
+  </div>
+
+  <div class="w-3/4">
+    <div class="py-10">
+      <h1 class="text-6xl font-bold">{{ page.title }}</h1>
+      <div>{{ page.data.subtitle }}</div>
+      <div>{{ page.data.authors }}</div>
+    </div>
+
+    {{ content }}
+  </div>
+</div>
