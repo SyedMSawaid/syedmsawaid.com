@@ -77,7 +77,6 @@ class Book
     data-controller='chapter'
     data-chapter-id-value='#{chapter.id}'
     data-chapter-ellipsis-class="text-orange-500"
-    data-chapter-bookmark-class="fill-orange-500 text-orange-500"
 >
   <a href='#{chapter.link}' class="text-nowrap">#{chapter.title}</a>
   <span class="grow overflow-hidden text-sm" data-chapter-target="ellipsis">............................................................................................................................................................................................................................................................................................................................................................................................................</span>

@@ -9,8 +9,8 @@ layout: default
   %>
     <li data-controller="book" data-book-id-value="<%= id %>" data-book-chapters-value="<%= chapters.map(&:id) %>">
       <a class="flex flex-col gap-2" href="/books/<%= id.parameterize %>">
-        <div>
-          <div class="w-[236px] h-[378px] border rounded relative box-border" data-book-target="cover">
+        <div class="w-[236px] h-[378px] border rounded relative box-border" data-book-target="cover">
+          <div >
           </div>
         </div>
         <div class="text-center"><%= id.titlecase %></div>
