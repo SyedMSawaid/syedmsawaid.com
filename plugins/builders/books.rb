@@ -133,6 +133,7 @@ class Book
   end
 
   # TODO: may be convert these into compenents or partials.
+  # TODO: Move them to the template, add it to the metadata and move it to the template.
   def li(chapter)
     <<-HTML
 <li class='chapter flex justify-between items-end gap-4'
@@ -141,7 +142,7 @@ class Book
     data-chapter-ellipsis-class="text-orange-500"
 >
   <a href='#{chapter.link}' class="text-nowrap">#{chapter.title}</a>
-  <span class="grow overflow-hidden text-sm" data-chapter-target="ellipsis">............................................................................................................................................................................................................................................................................................................................................................................................................</span>
+  <span class="grow overflow-hidden border-b border-dotted border-black mb-1.5" data-chapter-target="ellipsis"></span>
   <span class="text-nowrap">#{chapter.word_count}</span>
 </li>
     HTML
