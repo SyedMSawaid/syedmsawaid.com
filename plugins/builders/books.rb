@@ -22,7 +22,7 @@ class Builders::Books < SiteBuilder
       layout "default"
       permalink "/books/"
       content <<-HTML
-<ul class="list-none flex gap-6 py-10">
+<ul class="list-none flex justify-center sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-6 py-10 px-0 flex-wrap">
     #{book_covers}
 </ul>
 HTML
@@ -34,9 +34,9 @@ HTML
 
     <<-HTML
 <li data-controller="book" data-book-id-value="#{book.id}" data-book-chapters-value="#{chapters_json}" >
-  <a class="flex flex-col gap-2 w-[236px] max-w-[236px]" href="#{book.link}">
-    <div class="h-[378px] border rounded relative box-border" data-book-target="cover">
-      <img src="#{book.cover}" class="h-[378px] w-[236px] rounded">
+  <a class="flex flex-col gap-2 max-w-[236px]" href="#{book.link}">
+    <div class="max-h-[378px] border rounded relative box-border" data-book-target="cover">
+      <img src="/books/book-one/cover.png" class="max-h-[378px] max-w-[236px] rounded">
     </div>
     <div class="text-center">#{book.name}</div>
     <div class="text-sm text-center">#{book.authors}</div>

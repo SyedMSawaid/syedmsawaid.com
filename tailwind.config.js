@@ -5,7 +5,7 @@ module.exports = {
   content: [
     "./src/**/*.{html,md,liquid,erb,serb,rb}",
     "./frontend/javascript/**/*.js",
-    "./plugins/**/*.{html,md,liquid,erb,serb,rb}",
+     "./plugins/**/*.{html,md,liquid,erb,serb,rb}",
   ],
   theme: {
     extend: {
