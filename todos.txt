@@ -1,0 +1,20 @@
+0. On /books page, we have to add the bookmarking
+3. Styling
+6. Authors? (Add to the metadata. Like create just a simple page i.e. index.md or somemthing. Cover.png whatever)
+5. Books page
+7. Cover?
+8. Mobile friendly.
+
+------------------------------------------------------------------------
+
+4. CLI. (add the index page when you create a book. Add your metadata there. Make it 00-meta.md)
+
+
+------------------------------------------------------------------------
+
+Later:
+2. Last Updated section on the chapter page. Maybe the last time you read that chapter.
+Or show that the content of this chapter changed from the last time you read this.
+8. Sections
+CLI to update the fields
+9. Add a grid layout as well.

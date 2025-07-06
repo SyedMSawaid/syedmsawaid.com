@@ -57,7 +57,11 @@ td {
 }
 
 ul {
-  @apply pl-6 list-disc list-outside;
+  @apply list-disc list-inside;
+}
+
+ol {
+  @apply list-decimal list-inside;
 }
 
 strong {
