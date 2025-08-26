@@ -36,7 +36,7 @@ HTML
 <li data-controller="book" data-book-id-value="#{book.id}" data-book-chapters-value="#{chapters_json}" >
   <a class="flex flex-col gap-2 max-w-[236px]" href="#{book.link}">
     <div class="max-h-[378px] border rounded relative box-border" data-book-target="cover">
-      <img src="/books/book-one/cover.png" class="max-h-[378px] max-w-[236px] rounded">
+      <img src="#{book.cover}" class="max-h-[378px] max-w-[236px] rounded">
     </div>
     <div class="text-center">#{book.name}</div>
     <div class="text-sm text-center">#{book.authors}</div>
