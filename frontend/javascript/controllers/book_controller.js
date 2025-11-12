@@ -10,21 +10,22 @@ export default class extends Controller {
   static targets = ["cover"];
 
   connect() {
-    if (this.percentage > 0) this.addBookmark();
+    const percentage = this.percentage;
+    if (percentage > 0) this.addBookmark(percentage);
   }
 
-  addBookmark() {
+  addBookmark(percentage) {
     const line = document.createElement("div");
     this.#applyCommonStyles(line);
     line.style.height = "0px";
     line.style.borderTop = "1px dashed oklch(70.5% 0.213 47.604)";
     line.style.width = "100%";
-    line.style.top = `${this.percentage}%`;
+    line.style.top = `${percentage}%`;
     this.coverTarget.appendChild(line);
 
     const bookmark = document.createElement("span");
     this.#applyCommonStyles(bookmark);
-    bookmark.style.top = `calc(${this.percentage}% - 12px)`;
+    bookmark.style.top = `calc(${percentage}% - 12px)`;
     bookmark.style.right = `calc(100% - 12px)`;
     bookmark.innerHTML = SVG.BOOKMARK;
     this.coverTarget.appendChild(bookmark);
@@ -42,8 +43,8 @@ export default class extends Controller {
 
 
   get percentage() {
-    const currentChapter = this.chaptersValue.findIndex(x => x === this.currentChapter) + 1;
-    return  currentChapter / this.chaptersValue.length * 100;
+    const currentChapterIndex = this.chaptersValue.indexOf(this.currentChapter) + 1;
+    return currentChapterIndex / this.chaptersValue.length * 100;
   }
 
   get currentChapter() {

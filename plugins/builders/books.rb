@@ -30,7 +30,8 @@ HTML
   end
 
   def cover_for(book)
-    chapters_json = book.chapter_ids.to_json.gsub('"', '&quot;')
+    require 'erb'
+    chapters_json = ERB::Util.html_escape(book.chapter_ids.to_json)
 
     <<-HTML
 <li data-controller="book" data-book-id-value="#{book.id}" data-book-chapters-value="#{chapters_json}" >
@@ -46,14 +47,14 @@ HTML
   end
 
   def create_book_objects
+    meta_suffix = '00-meta.md'
     site.collections.books.resources
-        .group_by { |b| b.id.split("_books/").last.split("/").first }
+        .group_by { |b| b.id[/_books\/([^\/]+)/, 1] }
         .each do |book_id, chapters|
-          meta_file = chapters.find { |c| c.relative_path.to_s.end_with?('00-meta.md') }
-          regular_chapters = chapters.reject { |c| c.relative_path.to_s.end_with?('00-meta.md') }
+          meta_file, regular_chapters = chapters.partition { |c| c.relative_path.to_s.end_with?(meta_suffix) }
 
           resource = add_resource(:book, "books/#{book_id}.md") { permalink "/books/:slug/" }
-          @books << Book.new(resource, chapters: regular_chapters, meta: meta_file)
+          @books << Book.new(resource, chapters: regular_chapters, meta: meta_file.first)
         end
   end
 
@@ -82,7 +83,8 @@ class Book
 
   #TODO: support other formats as well.
   def cover
-    "/#{resource.path.split(".").first}/cover.png"
+    # More efficient: use [] with regex instead of double split
+    "/#{resource.path[/^[^.]+/]}/cover.png"
   end
 
   def authors?
@@ -100,7 +102,8 @@ class Book
   end
 
   def slug
-    id.split("/").last.split(".md").first
+    # More efficient: use regex to extract instead of double split
+    id[/\/([^\/]+)\.md$/, 1]
   end
 
   def link
@@ -163,8 +166,8 @@ class Chapter
   end
 
   def calculate_word_count
-    words_array = resource.content.split - %w[ # ]
-    @word_count = words_array.size
+    # More efficient: use scan instead of split and array subtraction
+    @word_count = resource.content.scan(/\b(?!#\b)\w+/).size
   end
 
   def delimited_word_count
