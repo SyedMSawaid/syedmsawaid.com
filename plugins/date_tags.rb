@@ -1,15 +1,18 @@
 class DateTags < SiteBuilder
   def build
+    # Cache Date.today to avoid multiple system calls
+    today = Date.today
+
     liquid_tag :year_now do
-      "#{Date.today.year}"
+      today.year.to_s
     end
 
     liquid_tag :website_version do
-      "v.#{Date.today.year}.#{two_digit Date.today.month}"
+      "v.#{today.year}.#{two_digit today.month}"
     end
 
     liquid_tag :updated_on do
-      "#{Date.today.strftime("%B %d, %Y")}"
+      today.strftime("%B %d, %Y")
     end
   end
 
