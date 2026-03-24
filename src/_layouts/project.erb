@@ -2,41 +2,67 @@
 layout: default
 ---
 
-<article class="project">
-
-  <div class="flex flex-col items-center gap-2 py-3 pt-10 md:py-16">
-    <h1 class="m-0 text-3xl font-black tracking-tighter text-center md:py-16 md:text-7xl"><%= resource.data.title %></h1>
-
-    <div class="text-center project-description">
-      <%= resource.data.description %>
+<article>
+  <div class="mb-10">
+    <div class="flex items-center gap-2 mb-3">
+      <% if resource.data.state == "Inactive" %>
+        <span class="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Inactive</span>
+      <% elsif resource.data.state %>
+        <span class="text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded"><%= resource.data.state %></span>
+      <% end %>
+      <% if resource.data.type %>
+        <span class="text-xs text-slate-400"><%= resource.data.type %></span>
+      <% end %>
     </div>
+    <h1 class="text-2xl font-semibold tracking-tight text-slate-900 mb-2 mt-0"><%= resource.data.title %></h1>
+    <p class="text-slate-500 text-sm m-0 leading-relaxed"><%= resource.data.description %></p>
   </div>
 
   <% if resource.data.links %>
-    <div class="flex flex-row items-center pb-12 gap-x-2">
+    <div class="flex flex-wrap gap-2 mb-8">
       <% resource.data.links.each do |link| %>
-        <a href="<%= link.values.first %>" 
-          target="_blank" 
-          class="flex flex-row items-center justify-center mx-auto border-2 rounded gap-x-1 grow hover:border-red-400 hover:border-2">
-          <%= link.keys.first %>
-
-          <% if ["GitHub", "Source Code"].include?(link.keys.first) %>
-            <%= render "github_icon", size: 20 %>
-          <% else %>
-            <%= render "link_icon", size:  20 %>
-          <% end%>
-        </a>
+        <% if link.respond_to?(:key?) && (link.key?("label") || link.key?(:label))
+             link_name = link["label"] || link[:label]
+             link_url  = link["url"]   || link[:url]
+           else
+             link_name = link.keys.first.to_s
+             link_url  = link.values.first
+           end %>
+        <% is_web_app = !["GitHub", "Source Code", "RubyGems"].include?(link_name) %>
+        <% inactive = resource.data.state == "Inactive" && is_web_app %>
+        <% is_github = ["GitHub", "Source Code"].include?(link_name)
+           is_rubygems = link_name == "RubyGems" %>
+        <% if inactive %>
+          <span class="inline-flex items-center gap-1.5 text-xs text-slate-400 bg-slate-100 px-3 py-1.5 rounded cursor-not-allowed">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <%= link_name %>
+          </span>
+        <% else %>
+          <a href="<%= link_url %>" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-1.5 text-xs font-medium text-white bg-slate-900 px-3 py-1.5 rounded hover:bg-slate-700 transition-colors">
+            <% if is_github %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+            <% elsif is_rubygems %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L1.605 6v12L12 24l10.395-6V6L12 0zm0 1.16l9.234 5.332v10.664L12 22.84l-9.234-5.332V6.492L12 1.16zM7.02 9.6v4.8l4.98 2.88 4.98-2.88V9.6L12 6.72 7.02 9.6z"/></svg>
+            <% else %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <% end %>
+            <%= link_name %>
+          </a>
+        <% end %>
       <% end %>
     </div>
   <% end %>
 
   <% if resource.data.tech_stack %>
-    <div class="flex flex-row items-center py-6 tech-stack gap-x-4">
-      <p class="p-0 m-0">Technologies used in this project are <%= resource.data.tech_stack.to_sentence %></p>
+    <div class="flex flex-wrap gap-1.5 mb-10">
+      <% resource.data.tech_stack.each do |tech| %>
+        <span class="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded"><%= tech %></span>
+      <% end %>
     </div>
   <% end %>
 
-  <div class="project-content">
+  <div class="prose">
     <%= yield %>
   </div>
 </article>

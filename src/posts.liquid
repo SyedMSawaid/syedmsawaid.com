@@ -2,34 +2,16 @@
 layout: page
 title: Writing
 ---
-<p class="text-center">
-  I write about life, programming, security, hacking, and everything else that piques my interest. You can see the
-  <a href="{{ "/posts/archive" | relative_url }}">whole archive</a>.
+<p class="text-slate-500 text-sm mb-8 -mt-4">
+  On software, life in Germany, and whatever else catches my attention.
+  <a href="{{ "/posts/archive" | relative_url }}" class="underline underline-offset-2 decoration-slate-300 hover:decoration-slate-900 transition-colors">Browse the archive</a>.
 </p>
 
-<div class="pb-10">
-  <ul class="flex flex-col items-center justify-center gap-4 p-0 m-0 list-none">
-    {% for post in collections.posts.resources %}
-      <li class="flex flex-col items-center justify-center gap-4 px-6 border-b-2 border-black pb-14 md:pb-28 post lg:w-content">
-        <div class="flex flex-col gap-8">
-          <div class="flex flex-col items-center justify-center">
-            <h2 class="!text-center">
-              <a href="{{ post.relative_url }}" class="no-underline">{{ post.title }}</a>
-            </h2>
-            <time class="text-lg italic font-bold tracking-tighter uppercase">
-              {{ post.data.date | date: '%B %d, %Y' }}
-            </time>
-          </div>
-
-          <div>
-            {{ post.content | truncatewords: 80 }}
-          </div>
-        </div>
-
-        <div class="px-2 py-0.5 uppercase tracking-tighter italic font-bold max-w-fit">
-          <a href="{{ post.relative_url }}" class="no-underline">Keep reading</a>
-        </div>
-      </li>
-    {% endfor %}
-  </ul>
+<div class="flex flex-col">
+  {% for post in collections.posts.resources %}
+  <a href="{{ post.relative_url }}" class="flex items-baseline justify-between gap-6 py-3 border-b border-slate-100 last:border-0 group no-underline" style="text-decoration:none">
+    <span class="text-sm text-slate-800 group-hover:text-slate-500 transition-colors duration-150">{{ post.title }}</span>
+    <time class="text-xs text-slate-400 shrink-0">{{ post.data.date | date: '%b %d, %Y' }}</time>
+  </a>
+  {% endfor %}
 </div>

@@ -3,28 +3,16 @@ layout: page
 title: Software
 ---
 
-<p>I have deep passion for Ruby on Rails and Hotwire, but I also dabble in other technolgoies from time to time to learn about different things.</p>
+<p class="text-slate-500 text-sm mb-8 -mt-4">Things I've built. Mostly Ruby on Rails and Hotwire.</p>
 
-<p>Here is list of all the projects I made</p>
-
-<div class="flex flex-col gap-y-4">
+<div class="flex flex-col">
   <% collections.software.resources.sorted_by_launch_date.each do |project| %>
-    <div class="project-card">
-      <div class="flex items-center justify-between">
-        <h2 class="p-0 m-0"><a href="<%= project.relative_url %>"><%= project.data.title %></a></h2>
-      </div>
-      <p class="p-0 m-0"><%= project.data.description %></p>
+  <a href="<%= project.relative_url %>" class="py-4 border-b border-slate-100 last:border-0 group block">
+    <div class="flex items-baseline justify-between gap-6 mb-1">
+      <span class="text-sm font-medium text-slate-900 group-hover:text-slate-500 transition-colors duration-150"><%= project.data.title %></span>
+      <span class="text-xs text-slate-400 shrink-0"><%= project.data.type %></span>
     </div>
+    <p class="text-sm text-slate-500 m-0 leading-relaxed"><%= project.data.description %></p>
+  </a>
   <% end %>
 </div>
-
-<%# <div>
-  Apart from these, I am also interested in;
-  <ul>
-    <li>Cyber Security</li>
-    <li>Data Science</li>
-    <li>Electrical Engineering</li>
-    <li>Product Designing</li>
-    <li>Machine Learning</li>
-  </ul>
-</div> %>

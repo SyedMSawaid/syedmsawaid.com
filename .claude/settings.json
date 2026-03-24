@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ruby --version)",
+      "Bash(bundle --version)",
+      "Bash(mise current:*)",
+      "Bash(mise exec:*)",
+      "Bash(curl -s \"https://www.youtube.com/@syedmsawaid/videos\")",
+      "Bash(curl -s \"https://www.youtube.com/@syedmsawaid\")",
+      "Bash(grep -r \"previous\\\\|next\" Gemfile* --include=\"*.rb\" -l)",
+      "Bash(find ~/.rbenv -name *.rb -path */bridgetown*/liquid_drop*)",
+      "Bash(find ~/.rbenv -name *.rb -path */bridgetown*)"
+    ]
+  }
+}

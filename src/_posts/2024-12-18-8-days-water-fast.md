@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  8 Days Water Fast - Losing Weight with Water Fasting Part 1
+title:  8 Days Water Fast - Losing Weight with Water Fasting
 date:   2024-12-18 14:09:40 +0100
 tags:
   - Fasting
