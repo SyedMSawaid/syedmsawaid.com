@@ -7,7 +7,7 @@ I'm Syed Muhammad Sawaid, a Software Engineer, Filmmaker, and aspiring entrepren
 
 I'm doing my Masters in Data Science at Philipps University Marburg. My main passion in software is Ruby on Rails and Hotwire, though I dabble in other things when curiosity strikes.
 
-Outside of work and school, I make vlogs, write on this site, and spend time at the Marburg International Club and the university's Debate Club. Occasionally I play basketball.
+Outside of work and school, I make vlogs, write on this site, and spend time at the Marburg International Club and the university's Debate Club. Occasionally I play tennis and basketball.
 
 ---
 
