@@ -1,0 +1,8 @@
+<div class="py-6 border-t border-slate-100">
+  <p class="mb-3 text-base leading-relaxed text-slate-900">{{ text }}</p>
+  {% if url %}
+    <a href="{{ url }}" target="_blank" rel="noopener" class="text-xs tracking-widest uppercase transition-colors duration-150 text-slate-400 hover:text-slate-900">{{ author }}</a>
+  {% else %}
+    <span class="text-xs tracking-widest uppercase text-slate-400">{{ author }}</span>
+  {% endif %}
+</div>
