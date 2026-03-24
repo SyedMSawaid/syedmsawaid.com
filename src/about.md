@@ -15,10 +15,6 @@ Outside of work and school, I make vlogs, write on this site, and spend time at 
 
 - [Podcasts](/podcasts) -- shows I keep coming back to
 - [Quotes](/quotes) -- lines that stuck with me
-- [Books](/books) -- what I'm reading and have read
-- [Films](/film) -- vlogs and videos I've made
-- [Writing](/posts) -- essays and notes on software, life, and everything else
-- [Now](/now) -- what I'm currently working on
 
 ---
 
