@@ -1,0 +1,33 @@
+---
+permalink: /fund/
+layout: none
+title: Redirecting…
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting… | {{ site.metadata.title }}</title>
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  {% render 'fonts' %}
+  <link rel="stylesheet" href="{% asset_path css %}">
+  <script>
+    setTimeout(function () {
+      window.location.replace("https://buymeacoffee.com/syedmsawaid");
+    }, 3000);
+  </script>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen px-5 font-sans text-center bg-white">
+  <div class="max-w-[420px] w-full flex flex-col items-center gap-4">
+    <svg class="w-6 h-6 animate-spin text-neutral-400" viewBox="0 0 24 24" fill="none">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+    </svg>
+    <p class="text-neutral-800">Taking you to Buy Me a Coffee…</p>
+    <p class="text-sm text-neutral-500">
+      Not redirected? <a class="underline hover:text-neutral-800" href="https://buymeacoffee.com/syedmsawaid">Click here</a>.
+    </p>
+  </div>
+</body>
+</html>
