@@ -3,7 +3,9 @@ layout: project
 title: Detawk
 description: A German language learning platform built around the FSI Basic German Course, with AI-generated audio and card-based drills.
 links:
-  - App: https://detawk.com
+  - Landing: https://detawk.com
+  - App: https://app.detawk.com
+  - FSI: https://fsi.syedmsawaid.com
 tech_stack:
   - Ruby on Rails
   - Hotwire
