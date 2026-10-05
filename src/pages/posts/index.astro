@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { formatPostDate, postRoute, publishedPosts } from "../../lib/content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { formatPostDate, postRoute, publishedPosts } from "@/lib/content";
 
 const posts = publishedPosts(await getCollection("posts"));
 ---
