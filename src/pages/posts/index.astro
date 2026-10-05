@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatPostDate, postRoute, publishedPosts } from "../../lib/content";
+
+const posts = publishedPosts(await getCollection("posts"));
+---
+
+<BaseLayout title="Writing">
+  <h1 class="mb-8 text-2xl font-semibold tracking-tight text-slate-900">Writing</h1>
+  <p class="-mt-4 mb-8 text-sm text-slate-500">
+    On software, life in Germany, and whatever else catches my attention.
+    <a href="/posts/archive" class="underline decoration-slate-300 underline-offset-2 transition-colors hover:decoration-slate-900">Browse the archive</a>.
+  </p>
+
+  <div class="flex flex-col">
+    {posts.map((post) => (
+      <a href={postRoute(post).url} class="group flex items-baseline justify-between gap-6 border-b border-slate-100 py-3 no-underline last:border-0" style="text-decoration:none">
+        <span class="text-sm text-slate-800 transition-colors duration-150 group-hover:text-slate-500">{post.data.title}</span>
+        <time class="shrink-0 text-xs text-slate-400">{formatPostDate(post, "long")}</time>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { softwareRoute } from "../../lib/content";
+
+const projects = (await getCollection("software")).sort((a, b) => b.data.launched - a.data.launched);
+---
+
+<BaseLayout title="Software">
+  <h1 class="mb-8 text-2xl font-semibold tracking-tight text-slate-900">Software</h1>
+  <p class="-mt-4 mb-8 text-sm text-slate-500">Things I've built. Mostly Ruby on Rails and Hotwire.</p>
+
+  <div class="flex flex-col">
+    {projects.map((project) => (
+      <a href={softwareRoute(project)} class="group block border-b border-slate-100 py-4 last:border-0">
+        <div class="mb-1 flex items-baseline justify-between gap-6">
+          <span class="text-sm font-medium text-slate-900 transition-colors duration-150 group-hover:text-slate-500">{project.data.title}</span>
+          <span class="shrink-0 text-xs text-slate-400">{project.data.type}</span>
+        </div>
+        <p class="m-0 text-sm leading-relaxed text-slate-500">{project.data.description}</p>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

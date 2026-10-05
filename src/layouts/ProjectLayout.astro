@@ -1,0 +1,65 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  project: CollectionEntry<"software">;
+}
+
+const { project } = Astro.props;
+const { title, description, links, tech_stack: techStack, state, type } = project.data;
+const projectLinks = (links ?? []).map((link) => {
+  const [name, url] = Object.entries(link)[0];
+  return { name, url };
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <article>
+    <div class="mb-10">
+      <div class="mb-3 flex items-center gap-2">
+        {state === "Inactive" ? (
+          <span class="rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-500">Inactive</span>
+        ) : state && (
+          <span class="rounded bg-emerald-50 px-2 py-0.5 text-xs text-emerald-700">{state}</span>
+        )}
+        <span class="text-xs text-slate-400">{type}</span>
+      </div>
+      <h1 class="mt-0 mb-2 text-2xl font-semibold tracking-tight text-slate-900">{title}</h1>
+      <p class="m-0 text-sm leading-relaxed text-slate-500">{description}</p>
+    </div>
+
+    {projectLinks.length > 0 && (
+      <div class="mb-8 flex flex-wrap gap-2">
+        {projectLinks.map(({ name, url }) => {
+          const inactive = state === "Inactive" && !["GitHub", "Source Code", "RubyGems"].includes(name);
+          const isGitHub = ["GitHub", "Source Code"].includes(name);
+          const isRubyGems = name === "RubyGems";
+          return inactive ? (
+            <span class="inline-flex cursor-not-allowed items-center gap-1.5 rounded bg-slate-100 px-3 py-1.5 text-xs text-slate-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              {name}
+            </span>
+          ) : (
+            <a href={url} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded bg-slate-900 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-slate-700">
+              {isGitHub ? (
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"></path></svg>
+              ) : isRubyGems ? (
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 1.605 6v12L12 24l10.395-6V6L12 0Zm0 1.16 9.234 5.332v10.664L12 22.84l-9.234-5.332V6.492L12 1.16ZM7.02 9.6v4.8L12 17.28l4.98-2.88V9.6L12 6.72 7.02 9.6Z"></path></svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              )}
+              {name}
+            </a>
+          );
+        })}
+      </div>
+    )}
+
+    <div class="mb-10 flex flex-wrap gap-1.5">
+      {techStack.map((tech) => <span class="rounded bg-slate-100 px-2 py-1 text-xs text-slate-500">{tech}</span>)}
+    </div>
+
+    <div class="prose"><slot /></div>
+  </article>
+</BaseLayout>

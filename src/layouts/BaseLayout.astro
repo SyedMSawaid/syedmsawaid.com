@@ -1,0 +1,41 @@
+---
+import Footer from "../components/Footer.astro";
+import Navigation from "../components/Navigation.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Personal blog about software engineering, filmmaking, and life in Germany.",
+} = Astro.props;
+const siteTitle = "Syed Muhammad Sawaid";
+const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <title>{pageTitle}</title>
+  </head>
+  <body class="flex min-h-screen flex-col bg-white">
+    <div class="mx-auto flex w-full max-w-[640px] flex-1 flex-col px-5 py-10 sm:px-8 sm:py-14">
+      <Navigation />
+      <main class="mt-14 flex-1">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>
