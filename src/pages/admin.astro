@@ -1,7 +1,9 @@
 ---
+import { Image } from "astro:assets";
+import dhhImage from "@/assets/images/dhh-says-fuck-you.jpg";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Admin">
-  <img src="/images/dhh-says-fuck-you.jpg" alt="DHH says fuck you." width="600" height="400" />
+  <Image src={dhhImage} alt="DHH says fuck you." width={600} height={450} />
 </BaseLayout>

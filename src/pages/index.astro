@@ -1,5 +1,7 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import sawaidImage from "@/assets/images/sawaid.jpg";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatPostDate, postRoute, publishedPosts, softwareRoute } from "@/lib/content";
 
@@ -15,7 +17,7 @@ const projects = (await getCollection("software")).sort((a, b) => b.data.launche
         Software engineer and filmmaker based in Marburg, Germany. Doing a Masters in Data Science at Philipps University Marburg. I write about software, life in Germany, and whatever catches my attention.
       </p>
     </div>
-    <img src="/images/sawaid.jpg" alt="Syed Muhammad Sawaid" class="order-first h-32 w-32 shrink-0 rounded-xl object-cover sm:order-last" />
+    <Image src={sawaidImage} alt="Syed Muhammad Sawaid" width={128} height={128} class="order-first h-32 w-32 shrink-0 rounded-xl object-cover sm:order-last" />
   </div>
 
   <section class="mb-12">

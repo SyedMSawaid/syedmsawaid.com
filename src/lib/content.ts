@@ -7,7 +7,7 @@ export function publishedPosts(posts: CollectionEntry<"posts">[]) {
 }
 
 export function postRoute(post: CollectionEntry<"posts">) {
-  const match = post.id.replace(/\.md$/, "").match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
+  const match = post.id.replace(/\.mdx?$/, "").match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
 
   if (!match) {
     throw new Error(`Invalid post filename: ${post.id}`);
