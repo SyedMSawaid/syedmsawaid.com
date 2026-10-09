@@ -21,7 +21,7 @@ export function softwareRoute(project: CollectionEntry<"software">) {
   return `/software/${project.id.replace(/\.md$/, "")}/`;
 }
 
-export function favoriteRoute(section: "movies" | "books" | "people" | "blogs" | "articles", entry: { id: string }) {
+export function favoriteRoute(section: "watch" | "podcasts" | "books" | "people" | "blogs" | "articles", entry: { id: string }) {
   return `/favorite/${section}/${entry.id}/`;
 }
 

@@ -11,14 +11,13 @@ const articles = (await getCollection("articles")).sort((a, b) => a.data.title.l
   <p class="-mt-4 mb-10 text-sm text-slate-500">Essays worth keeping.</p>
   <div class="flex flex-col">
     {articles.map((article) => {
-      const meta = [article.data.publication, article.data.author, article.data.year].filter(Boolean).join(" · ");
+      const meta = [article.data.author, article.data.year].filter(Boolean).join(" · ");
       return (
         <a href={favoriteRoute("articles", article)} class="group block border-b border-slate-100 py-4 last:border-0">
           <div class="flex items-baseline justify-between gap-6">
             <span class="text-sm font-medium text-slate-900 transition-colors duration-150 group-hover:text-slate-500">{article.data.title}</span>
             {meta && <span class="shrink-0 text-xs text-slate-400">{meta}</span>}
           </div>
-          {article.data.description && <p class="mt-1 mb-0 text-sm leading-relaxed text-slate-500">{article.data.description}</p>}
         </a>
       );
     })}

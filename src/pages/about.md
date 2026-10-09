@@ -13,11 +13,11 @@ Outside of work and school, I make vlogs, write on this site, and spend time at 
 
 **Things I like**
 
-- [Movies](/favorite/movies) -- films I keep thinking about
+- [Watch](/favorite/watch) -- movies, shows, and videos I keep thinking about
 - [Books](/favorite/books) -- what I've been reading
 - [Quotes](/favorite/quotes) -- lines that stuck with me
 - [Podcasts](/favorite/podcasts) -- episodes worth coming back to
-- [Songs](/favorite/songs) -- on repeat
+- [Music](/favorite/music) -- on repeat
 - [People](/favorite/people) -- people I follow and learn from
 - [Blogs](/favorite/blogs) -- sites I keep coming back to
 

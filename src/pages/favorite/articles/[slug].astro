@@ -17,8 +17,8 @@ interface Props {
 }
 
 const { article } = Astro.props;
-const { title, author, publication, year, description, url } = article.data;
-const meta = [publication, author, year].filter(Boolean).join(" · ");
+const { title, author, year, url } = article.data;
+const meta = [author, year].filter(Boolean).join(" · ");
 const { Content } = await render(article);
 ---
 
@@ -27,7 +27,6 @@ const { Content } = await render(article);
     <div class="mb-8">
       <h1 class="mt-0 mb-2 text-2xl font-semibold tracking-tight text-slate-900">{title}</h1>
       {meta && <p class="m-0 text-sm text-slate-500">{meta}</p>}
-      {description && <p class="mt-2 mb-0 text-sm leading-relaxed text-slate-500">{description}</p>}
     </div>
 
     {url && (

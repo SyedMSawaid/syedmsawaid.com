@@ -1,8 +1,8 @@
 ---
 title: In the Mood for Love
-director: Wong Kar-wai
+type: movie
+creator: Wong Kar-wai
 year: 2000
-rating: 4
 url: https://www.imdb.com/title/tt0118694/
 ---
 

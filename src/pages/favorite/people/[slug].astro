@@ -17,8 +17,13 @@ interface Props {
 }
 
 const { person } = Astro.props;
-const { name, category, role, url } = person.data;
-const meta = [category, role].filter(Boolean).join(" · ");
+const { name, website, channel } = person.data;
+
+const links = [
+  website ? { href: website, label: "Website ↗" } : undefined,
+  channel ? { href: channel, label: "YouTube ↗" } : undefined,
+].filter(Boolean) as { href: string; label: string }[];
+
 const { Content } = await render(person);
 ---
 
@@ -26,13 +31,16 @@ const { Content } = await render(person);
   <article>
     <div class="mb-8">
       <h1 class="mt-0 mb-2 text-2xl font-semibold tracking-tight text-slate-900">{name}</h1>
-      {meta && <p class="m-0 text-sm text-slate-500">{meta}</p>}
     </div>
 
-    {url && (
-      <a href={url} target="_blank" rel="noopener" class="text-xs tracking-widest text-slate-400 uppercase transition-colors duration-150 hover:text-slate-900">
-        Visit ↗
-      </a>
+    {links.length > 0 && (
+      <div class="flex flex-wrap gap-x-4 gap-y-2">
+        {links.map((link) => (
+          <a href={link.href} target="_blank" rel="noopener" class="text-xs tracking-widest text-slate-400 uppercase transition-colors duration-150 hover:text-slate-900">
+            {link.label}
+          </a>
+        ))}
+      </div>
     )}
 
     <div class="prose mt-8">

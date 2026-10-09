@@ -4,22 +4,22 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  const movies = await getCollection("movies");
+  const watched = await getCollection("watch");
 
-  return movies.map((movie) => ({
-    params: { slug: movie.id },
-    props: { movie },
+  return watched.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
   }));
 }
 
 interface Props {
-  movie: CollectionEntry<"movies">;
+  entry: CollectionEntry<"watch">;
 }
 
-const { movie } = Astro.props;
-const { title, director, year, rating, url } = movie.data;
-const meta = [director, year].filter(Boolean).join(" · ");
-const { Content } = await render(movie);
+const { entry } = Astro.props;
+const { title, type, creator, year, url } = entry.data;
+const meta = [type, creator, year].filter(Boolean).join(" · ");
+const { Content } = await render(entry);
 ---
 
 <BaseLayout title={title}>
@@ -27,11 +27,6 @@ const { Content } = await render(movie);
     <div class="mb-8">
       <h1 class="mt-0 mb-2 text-2xl font-semibold tracking-tight text-slate-900">{title}</h1>
       {meta && <p class="m-0 text-sm text-slate-500">{meta}</p>}
-      {rating != null && (
-        <p class="mt-2 mb-0 text-xs tracking-widest text-slate-400 uppercase" aria-label={`${rating} out of 5`}>
-          {"★".repeat(rating)}{"☆".repeat(5 - rating)}
-        </p>
-      )}
     </div>
 
     {url && (

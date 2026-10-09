@@ -17,7 +17,7 @@ interface Props {
 }
 
 const { blog } = Astro.props;
-const { title, author, description, url } = blog.data;
+const { title, author, url } = blog.data;
 const { Content } = await render(blog);
 ---
 
@@ -26,7 +26,6 @@ const { Content } = await render(blog);
     <div class="mb-8">
       <h1 class="mt-0 mb-2 text-2xl font-semibold tracking-tight text-slate-900">{title}</h1>
       {author && <p class="m-0 text-sm text-slate-500">{author}</p>}
-      {description && <p class="mt-2 mb-0 text-sm leading-relaxed text-slate-500">{description}</p>}
     </div>
 
     {url && (

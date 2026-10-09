@@ -27,13 +27,13 @@ const software = defineCollection({
   }),
 });
 
-const movies = defineCollection({
-  loader: glob({ base: "./src/content/favorite/movies", pattern: "**/*.md" }),
+const watch = defineCollection({
+  loader: glob({ base: "./src/content/favorite/watch", pattern: "**/*.md" }),
   schema: z.object({
     title: z.string(),
-    director: z.string().optional(),
+    type: z.enum(["movie", "show", "video"]).default("movie"),
+    creator: z.string().optional(),
     year: z.number().optional(),
-    rating: z.number().min(0).max(5).optional(),
     url: z.url().optional(),
   }),
 });
@@ -64,6 +64,7 @@ const people = defineCollection({
   schema: z.object({
     name: z.string(),
     website: z.url().optional(),
+    channel: z.url().optional(),
   }),
 });
 
@@ -86,4 +87,4 @@ const articles = defineCollection({
   }),
 });
 
-export const collections = { posts, software, movies, podcasts, books, people, blogs, articles };
+export const collections = { posts, software, watch, podcasts, books, people, blogs, articles };

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import songsData from "@/data/songs.yaml";
+import musicData from "@/data/music.yaml";
 
 interface Song {
   title: string;
@@ -10,13 +10,13 @@ interface Song {
   url?: string;
 }
 
-interface SongsFile {
+interface MusicFile {
   title: string;
   description?: string;
   items: Song[];
 }
 
-const { title, description, items } = songsData as SongsFile;
+const { title, description, items } = musicData as MusicFile;
 ---
 
 <BaseLayout title={title}>

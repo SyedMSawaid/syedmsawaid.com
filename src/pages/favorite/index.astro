@@ -2,20 +2,20 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import quotes from "@/data/quotes.yaml";
-import songs from "@/data/songs.yaml";
+import music from "@/data/music.yaml";
 
 const quoteItems = (quotes as { items: unknown[] }).items;
-const songItems = (songs as { items: unknown[] }).items;
+const musicItems = (music as { items: unknown[] }).items;
 
 const sections = [
-  { title: "Movies", href: "/favorite/movies", description: "Films I keep thinking about.", count: (await getCollection("movies")).length },
+  { title: "Watch", href: "/favorite/watch", description: "Movies, shows, and videos.", count: (await getCollection("watch")).length },
   { title: "Books", href: "/favorite/books", description: "What I've been reading.", count: (await getCollection("books")).length },
   { title: "Quotes", href: "/favorite/quotes", description: "Lines that stuck with me.", count: quoteItems.length },
   { title: "Podcasts", href: "/favorite/podcasts", description: "Episodes worth coming back to.", count: (await getCollection("podcasts")).length },
+  { title: "Music", href: "/favorite/music", description: "On repeat.", count: musicItems.length },
   { title: "People", href: "/favorite/people", description: "People I follow and learn from.", count: (await getCollection("people")).length },
   { title: "Blogs", href: "/favorite/blogs", description: "Sites I keep coming back to.", count: (await getCollection("blogs")).length },
   { title: "Articles", href: "/favorite/articles", description: "Essays worth keeping.", count: (await getCollection("articles")).length },
-  { title: "Songs", href: "/favorite/songs", description: "On repeat.", count: songItems.length },
 ];
 ---
 
