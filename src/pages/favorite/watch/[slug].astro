@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Tags from "@/components/Tags.astro";
 
 export async function getStaticPaths() {
   const watched = await getCollection("watch");
@@ -27,6 +28,7 @@ const { Content } = await render(entry);
     <div class="mb-8">
       <h1 class="mt-0 mb-2 text-2xl font-semibold tracking-tight text-slate-900">{title}</h1>
       {meta && <p class="m-0 text-sm text-slate-500">{meta}</p>}
+      <Tags tags={entry.data.tags} />
     </div>
 
     {url && (

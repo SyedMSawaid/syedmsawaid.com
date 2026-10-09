@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Tags from "@/components/Tags.astro";
 import musicData from "@/data/music.yaml";
 
 interface Song {
@@ -8,6 +9,7 @@ interface Song {
   album?: string;
   year?: number;
   url?: string;
+  tags?: string[];
 }
 
 interface MusicFile {
@@ -40,6 +42,7 @@ const { title, description, items } = musicData as MusicFile;
             <span class="text-base leading-relaxed text-slate-900">{song.title}</span>
           )}
           {meta && <p class="mt-1 mb-0 text-xs text-slate-400">{meta}</p>}
+          <Tags tags={song.tags} />
         </div>
       );
     })}

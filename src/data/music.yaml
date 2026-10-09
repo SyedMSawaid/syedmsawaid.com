@@ -8,13 +8,16 @@ items:
     album: The Stranger
     year: 1977
     url: https://www.youtube.com/watch?v=wccRif2DaGs
+    tags: []
   - title: Everlong
     artist: Foo Fighters
     album: The Colour and the Shape
     year: 1997
     url: https://www.youtube.com/watch?v=eBG7P-K-r1Y
+    tags: []
   - title: Halcyon On and On
     artist: Orbital
     album: Snivilisation
     year: 1994
     url: https://www.youtube.com/watch?v=odgq8t5DoTM
+    tags: []

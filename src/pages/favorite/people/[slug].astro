@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Tags from "@/components/Tags.astro";
 
 export async function getStaticPaths() {
   const people = await getCollection("people");
@@ -31,6 +32,7 @@ const { Content } = await render(person);
   <article>
     <div class="mb-8">
       <h1 class="mt-0 mb-2 text-2xl font-semibold tracking-tight text-slate-900">{name}</h1>
+      <Tags tags={person.data.tags} />
     </div>
 
     {links.length > 0 && (

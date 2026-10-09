@@ -4,6 +4,7 @@ author: Eric Jorgenson
 year: 2020
 rating: 5
 url: https://www.navalmanack.com
+tags: []
 ---
 
 A collection of Naval's thoughts on wealth, happiness, and leverage.

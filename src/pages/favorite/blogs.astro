@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { favoriteRoute } from "@/lib/content";
+import Tags from "@/components/Tags.astro";
 
 const blogs = (await getCollection("blogs")).sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
@@ -16,6 +17,7 @@ const blogs = (await getCollection("blogs")).sort((a, b) => a.data.title.localeC
           <span class="text-sm font-medium text-slate-900 transition-colors duration-150 group-hover:text-slate-500">{blog.data.title}</span>
           {blog.data.author && <span class="shrink-0 text-xs text-slate-400">{blog.data.author}</span>}
         </div>
+        <Tags tags={blog.data.tags} />
       </a>
     ))}
   </div>

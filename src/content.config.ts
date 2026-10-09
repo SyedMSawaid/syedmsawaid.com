@@ -35,6 +35,7 @@ const watch = defineCollection({
     creator: z.string().optional(),
     year: z.number().optional(),
     url: z.url().optional(),
+    tags: z.array(z.string()).default([]),
   }),
 });
 
@@ -45,6 +46,7 @@ const podcasts = defineCollection({
     show: z.string().optional(),
     year: z.number().optional(),
     url: z.url().optional(),
+    tags: z.array(z.string()).default([]),
   }),
 });
 
@@ -56,6 +58,7 @@ const books = defineCollection({
     year: z.number().optional(),
     rating: z.number().min(0).max(5).optional(),
     url: z.url().optional(),
+    tags: z.array(z.string()).default([]),
   }),
 });
 
@@ -65,6 +68,7 @@ const people = defineCollection({
     name: z.string(),
     website: z.url().optional(),
     channel: z.url().optional(),
+    tags: z.array(z.string()).default([]),
   }),
 });
 
@@ -74,6 +78,7 @@ const blogs = defineCollection({
     title: z.string(),
     author: z.string().optional(),
     url: z.url().optional(),
+    tags: z.array(z.string()).default([]),
   }),
 });
 
@@ -84,6 +89,7 @@ const articles = defineCollection({
     author: z.string().optional(),
     year: z.number().optional(),
     url: z.url().optional(),
+    tags: z.array(z.string()).default([]),
   }),
 });
 
