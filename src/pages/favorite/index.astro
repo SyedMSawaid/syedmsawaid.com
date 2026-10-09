@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import quotes from "@/data/quotes.yaml";
+import songs from "@/data/songs.yaml";
+
+const quoteItems = (quotes as { items: unknown[] }).items;
+const songItems = (songs as { items: unknown[] }).items;
+
+const sections = [
+  { title: "Movies", href: "/favorite/movies", description: "Films I keep thinking about.", count: (await getCollection("movies")).length },
+  { title: "Books", href: "/favorite/books", description: "What I've been reading.", count: (await getCollection("books")).length },
+  { title: "Quotes", href: "/favorite/quotes", description: "Lines that stuck with me.", count: quoteItems.length },
+  { title: "Podcasts", href: "/favorite/podcasts", description: "Episodes worth coming back to.", count: (await getCollection("podcasts")).length },
+  { title: "People", href: "/favorite/people", description: "People I follow and learn from.", count: (await getCollection("people")).length },
+  { title: "Blogs", href: "/favorite/blogs", description: "Sites I keep coming back to.", count: (await getCollection("blogs")).length },
+  { title: "Articles", href: "/favorite/articles", description: "Essays worth keeping.", count: (await getCollection("articles")).length },
+  { title: "Songs", href: "/favorite/songs", description: "On repeat.", count: songItems.length },
+];
+---
+
+<BaseLayout title="Favorites">
+  <h1 class="mb-8 text-2xl font-semibold tracking-tight text-slate-900">Favorites</h1>
+  <p class="-mt-4 mb-10 text-sm text-slate-500">Films, books, music, words, and conversations worth keeping.</p>
+  <div class="flex flex-col">
+    {sections.map((section) => (
+      <a href={section.href} class="group flex items-baseline justify-between gap-6 border-b border-slate-100 py-4 last:border-0">
+        <span>
+          <span class="block text-sm font-medium text-slate-900 transition-colors duration-150 group-hover:text-slate-500">{section.title}</span>
+          <span class="mt-0.5 block text-sm text-slate-500">{section.description}</span>
+        </span>
+        <span class="shrink-0 text-xs text-slate-400">{section.count}</span>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

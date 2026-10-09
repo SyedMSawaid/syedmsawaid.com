@@ -22,5 +22,4 @@ So I am deciding and committing to writing at least 3 blog posts each week. The 
 
 In short, the idea is to write more to write better. Or do more to do better. There is just no other way I know off. It is simple as that.
 
-💡
-Do more to do better
+💡 Do more to do better

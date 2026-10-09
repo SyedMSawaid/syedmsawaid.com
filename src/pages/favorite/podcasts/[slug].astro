@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const podcasts = await getCollection("podcasts");
+
+  return podcasts.map((podcast) => ({
+    params: { slug: podcast.id },
+    props: { podcast },
+  }));
+}
+
+interface Props {
+  podcast: CollectionEntry<"podcasts">;
+}
+
+const { podcast } = Astro.props;
+const { title, show, year, url } = podcast.data;
+const meta = [show, year].filter(Boolean).join(" · ");
+const { Content } = await render(podcast);
+---
+
+<BaseLayout title={title}>
+  <article>
+    <div class="mb-8">
+      <h1 class="mt-0 mb-2 text-2xl font-semibold tracking-tight text-slate-900">{title}</h1>
+      {meta && <p class="m-0 text-sm text-slate-500">{meta}</p>}
+    </div>
+
+    {url && (
+      <a href={url} target="_blank" rel="noopener" class="text-xs tracking-widest text-slate-400 uppercase transition-colors duration-150 hover:text-slate-900">
+        Listen ↗
+      </a>
+    )}
+
+    <div class="prose mt-8">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

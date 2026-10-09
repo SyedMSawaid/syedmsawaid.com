@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { favoriteRoute } from "@/lib/content";
+
+const books = (await getCollection("books")).sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+---
+
+<BaseLayout title="Books">
+  <h1 class="mb-8 text-2xl font-semibold tracking-tight text-slate-900">Books</h1>
+  <p class="-mt-4 mb-10 text-sm text-slate-500">What I've been reading.</p>
+  <div class="flex flex-col">
+    {books.map((book) => {
+      const meta = [book.data.author, book.data.year].filter(Boolean).join(" · ");
+      return (
+        <a href={favoriteRoute("books", book)} class="group block border-b border-slate-100 py-4 last:border-0">
+          <div class="flex items-baseline justify-between gap-6">
+            <span class="text-sm font-medium text-slate-900 transition-colors duration-150 group-hover:text-slate-500">{book.data.title}</span>
+            <span class="shrink-0 text-xs text-slate-400">{meta}</span>
+          </div>
+        </a>
+      );
+    })}
+  </div>
+</BaseLayout>

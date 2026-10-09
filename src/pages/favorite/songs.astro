@@ -1,0 +1,47 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import songsData from "@/data/songs.yaml";
+
+interface Song {
+  title: string;
+  artist?: string;
+  album?: string;
+  year?: number;
+  url?: string;
+}
+
+interface SongsFile {
+  title: string;
+  description?: string;
+  items: Song[];
+}
+
+const { title, description, items } = songsData as SongsFile;
+---
+
+<BaseLayout title={title}>
+  <h1 class="mb-8 text-2xl font-semibold tracking-tight text-slate-900">{title}</h1>
+  {description && <p class="-mt-4 mb-10 text-sm text-slate-500">{description}</p>}
+  <div class="flex flex-col">
+    {items.map((song) => {
+      const meta = [song.artist, song.album, song.year].filter(Boolean).join(" · ");
+      return (
+        <div class="border-b border-slate-100 py-6 last:border-0">
+          {song.url ? (
+            <a
+              href={song.url}
+              target="_blank"
+              rel="noopener"
+              class="text-base leading-relaxed text-slate-900 transition-colors duration-150 hover:text-slate-500"
+            >
+              {song.title}
+            </a>
+          ) : (
+            <span class="text-base leading-relaxed text-slate-900">{song.title}</span>
+          )}
+          {meta && <p class="mt-1 mb-0 text-xs text-slate-400">{meta}</p>}
+        </div>
+      );
+    })}
+  </div>
+</BaseLayout>

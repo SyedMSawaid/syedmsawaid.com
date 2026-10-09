@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const people = await getCollection("people");
+
+  return people.map((person) => ({
+    params: { slug: person.id },
+    props: { person },
+  }));
+}
+
+interface Props {
+  person: CollectionEntry<"people">;
+}
+
+const { person } = Astro.props;
+const { name, category, role, url } = person.data;
+const meta = [category, role].filter(Boolean).join(" · ");
+const { Content } = await render(person);
+---
+
+<BaseLayout title={name}>
+  <article>
+    <div class="mb-8">
+      <h1 class="mt-0 mb-2 text-2xl font-semibold tracking-tight text-slate-900">{name}</h1>
+      {meta && <p class="m-0 text-sm text-slate-500">{meta}</p>}
+    </div>
+
+    {url && (
+      <a href={url} target="_blank" rel="noopener" class="text-xs tracking-widest text-slate-400 uppercase transition-colors duration-150 hover:text-slate-900">
+        Visit ↗
+      </a>
+    )}
+
+    <div class="prose mt-8">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

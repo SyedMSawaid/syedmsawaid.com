@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const podcasts = await getCollection("podcasts");
+---
+
+<BaseLayout title="Podcasts">
+  <h1 class="mb-8 text-2xl font-semibold tracking-tight text-slate-900">Podcasts</h1>
+  <p class="-mt-4 mb-10 text-sm text-slate-500">Episodes worth coming back to.</p>
+  <div class="flex flex-col">
+    {podcasts.map((podcast) => {
+      const meta = [podcast.data.show, podcast.data.year].filter(Boolean).join(" · ");
+      return (
+        <div class="border-b border-slate-100 py-6 last:border-0">
+          <a
+            href={`/favorite/podcasts/${podcast.id}/`}
+            class="text-base leading-relaxed text-slate-900 transition-colors duration-150 hover:text-slate-500"
+          >
+            {podcast.data.title}
+          </a>
+          {meta && <p class="mt-1 mb-0 text-xs text-slate-400">{meta}</p>}
+        </div>
+      );
+    })}
+  </div>
+</BaseLayout>

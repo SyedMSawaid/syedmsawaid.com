@@ -1,0 +1,20 @@
+# Page metadata lives here, with the list below it.
+title: Songs
+description: On repeat.
+
+items:
+  - title: Vienna
+    artist: Billy Joel
+    album: The Stranger
+    year: 1977
+    url: https://www.youtube.com/watch?v=wccRif2DaGs
+  - title: Everlong
+    artist: Foo Fighters
+    album: The Colour and the Shape
+    year: 1997
+    url: https://www.youtube.com/watch?v=eBG7P-K-r1Y
+  - title: Halcyon On and On
+    artist: Orbital
+    album: Snivilisation
+    year: 1994
+    url: https://www.youtube.com/watch?v=odgq8t5DoTM

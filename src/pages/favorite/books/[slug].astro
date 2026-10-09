@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const books = await getCollection("books");
+
+  return books.map((book) => ({
+    params: { slug: book.id },
+    props: { book },
+  }));
+}
+
+interface Props {
+  book: CollectionEntry<"books">;
+}
+
+const { book } = Astro.props;
+const { title, author, year, rating, url } = book.data;
+const meta = [author, year].filter(Boolean).join(" · ");
+const { Content } = await render(book);
+---
+
+<BaseLayout title={title}>
+  <article>
+    <div class="mb-8">
+      <h1 class="mt-0 mb-2 text-2xl font-semibold tracking-tight text-slate-900">{title}</h1>
+      {meta && <p class="m-0 text-sm text-slate-500">{meta}</p>}
+      {rating != null && (
+        <p class="mt-2 mb-0 text-xs tracking-widest text-slate-400 uppercase" aria-label={`${rating} out of 5`}>
+          {"★".repeat(rating)}{"☆".repeat(5 - rating)}
+        </p>
+      )}
+    </div>
+
+    {url && (
+      <a href={url} target="_blank" rel="noopener" class="text-xs tracking-widest text-slate-400 uppercase transition-colors duration-150 hover:text-slate-900">
+        View ↗
+      </a>
+    )}
+
+    <div class="prose mt-8">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

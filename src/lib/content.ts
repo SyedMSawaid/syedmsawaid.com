@@ -21,6 +21,10 @@ export function softwareRoute(project: CollectionEntry<"software">) {
   return `/software/${project.id.replace(/\.md$/, "")}/`;
 }
 
+export function favoriteRoute(section: "movies" | "books" | "people" | "blogs" | "articles", entry: { id: string }) {
+  return `/favorite/${section}/${entry.id}/`;
+}
+
 export function formatPostDate(post: CollectionEntry<"posts">, format: "month" | "short" | "long") {
   const { year, month, day } = postRoute(post);
   const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
