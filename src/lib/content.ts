@@ -17,8 +17,8 @@ export function postRoute(post: CollectionEntry<"posts">) {
   return { year, month, day, slug, url: `/${year}/${month}/${day}/${slug}/` };
 }
 
-export function softwareRoute(project: CollectionEntry<"software">) {
-  return `/software/${project.id.replace(/\.md$/, "")}/`;
+export function projectRoute(project: CollectionEntry<"projects">) {
+  return `/projects/${project.id.replace(/\.md$/, "")}/`;
 }
 
 export function favoriteRoute(section: "watch" | "podcasts" | "books" | "people" | "blogs" | "articles", entry: { id: string }) {

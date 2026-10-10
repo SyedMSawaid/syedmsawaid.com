@@ -13,8 +13,8 @@ const posts = defineCollection({
   }),
 });
 
-const software = defineCollection({
-  loader: glob({ base: "./src/content/software", pattern: "**/*.md" }),
+const projects = defineCollection({
+  loader: glob({ base: "./src/content/projects", pattern: "**/*.md" }),
   schema: z.object({
     layout: z.string().optional(),
     title: z.string(),
@@ -93,4 +93,4 @@ const articles = defineCollection({
   }),
 });
 
-export const collections = { posts, software, watch, podcasts, books, people, blogs, articles };
+export const collections = { posts, projects, watch, podcasts, books, people, blogs, articles };
