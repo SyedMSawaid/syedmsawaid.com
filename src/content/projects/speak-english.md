@@ -5,7 +5,7 @@ description: A shadowing app that plays YouTube video snippets for pronunciation
 links:
 tech_stack:
   - Ruby
-  - Rails
+  - Ruby on Rails
   - Hotwire
   - WebSockets
   - Madmin

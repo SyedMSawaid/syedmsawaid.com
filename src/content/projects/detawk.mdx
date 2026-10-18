@@ -1,0 +1,132 @@
+---
+title: Detawk
+description: The FSI Basic German Course, turned from a two-column PDF into something you can actually drill. Built twice, first as a paid Rails app with generated audio, then as a free static site that talks through your browser.
+links:
+  - Landing: https://detawk.com
+  - App: https://app.detawk.com
+  - FSI: https://fsi.syedmsawaid.com
+tech_stack:
+  - Astro
+  - React
+  - Tailwind CSS
+  - Cloudflare Pages
+  - PostHog
+  - Ruby on Rails
+  - Hotwire
+  - SQLite
+  - Bridgetown
+  - ElevenLabs
+  - Stripe
+  - Kamal
+launched: 2026
+type: SaaS
+state: Active
+---
+
+import Diagram from "@/components/Diagram.astro";
+
+The FSI Basic German Course was written by the US government to train diplomats, and it's in the public domain. It's also one of the best ways to learn German that almost nobody has heard of, partly because it ships as a PDF: two columns, no audio, nothing to practise with. Detawk is my attempt to fix that.
+
+**Where it stands today.** All 24 units, 259 sections, flashcards, and a listening player. It's a static site with no server and no database, and the audio is spoken by your browser.
+
+## It's been two products
+
+I've built this twice, and the second version exists because of what I learned from the first.
+
+**The first one was a business.** Between December 2025 and March 2026 I built a Rails app where the course sat behind a paywall: Unit 1 free, everything else €5 a month or €50 a year. Every word and sentence had a recording at normal and slow speed, generated with ElevenLabs. A marketing site at detawk.com carried the pitch ("the only German course that actually produces speakers"), a blog, and a public roadmap. I announced it on 31 March.
+
+**The second one is just the course.** Over the following months I rebuilt it as a static Astro site. It's faster, it costs almost nothing to run, and there's no login, so all 24 units are open to anyone. The audio comes from the browser's own German voice.
+
+## The Rails version
+
+<Diagram
+  caption="One server did everything, and it had to stay up all the time."
+  chart={`
+flowchart LR
+    B["Browser"] --> CF["Cloudflare"]
+    CF --> APP["Rails app<br/>one VPS · Kamal"]
+    APP --> DB[("SQLite")]
+    APP --> S["Stripe<br/>subscriptions"]
+    APP --> PH["PostHog<br/>analytics"]
+    ADMIN["Admin panel<br/>(Madmin)"] --> EL["ElevenLabs<br/>text to speech"]
+    ADMIN --> DB
+    DB -.->|"continuous backup"| B2[("Backblaze")]
+
+    classDef store fill:#f1f5f9,stroke:#94a3b8,color:#0f172a
+    class DB,B2 store
+  `}
+/>
+
+I wanted it to be a boring, one-person stack: Rails 8, Hotwire, and SQLite for everything, including jobs, cache, and WebSockets. No Redis and no separate worker server. It ran on a single VPS, deployed with Kamal and backed up with Litestream.
+
+The interesting part wasn't the learner-facing app. It was the **admin panel**, because that's where the course got made. For each word or sentence I could generate audio at two speeds, listen to the candidates, and approve one. A review queue walked me through everything still pending, one card at a time, with the arrow keys. Generating audio was cheap. Deciding which version was good enough to ship was the real work.
+
+Words and sentences were stored once and shared, so a word that appears in fifty sections was generated and paid for once.
+
+## Why I moved
+
+It worked, but it was heavy for what it was. A server that had to run around the clock, backups, an audio bill, and a deploy for every typo fix, all to serve a course that never changes. Every page view hit a database to produce the same HTML.
+
+So I rebuilt it as static pages on Cloudflare Pages, deployed from GitHub Actions. Nothing runs unless someone is reading.
+
+**The ElevenLabs bill went away.** I replaced every recorded clip with the browser's Web Speech API. The voice is more robotic than a studio recording, but it's free, instant, and works for every word of all 24 units without a review queue.
+
+## The Astro version
+
+<Diagram
+  caption="Build once, serve static files. The only live piece is a tiny analytics proxy."
+  chart={`
+flowchart LR
+    SEED["Ruby seeds<br/>Units 1–12"] --> J["259 section<br/>JSON files"]
+    PDF["Volume 2 PDF<br/>Units 13–24"] --> J
+    J --> BUILD["Astro build<br/>GitHub Actions"]
+    BUILD --> CF["Cloudflare Pages<br/>static HTML"]
+    CF --> USER["Your browser<br/>React + speech synthesis"]
+
+    classDef out fill:#f1f5f9,stroke:#94a3b8,color:#0f172a
+    class CF out
+  `}
+/>
+
+### Studying
+
+Each section type from the course gets its own layout. Everything's visible at once: German in italics, English in plain text, and an audio button on every line. There's no reveal and no typing, just reading and listening.
+
+It's built to be used from the keyboard:
+
+| Key | What it does |
+| --- | --- |
+| `↑` `↓` | Move between lines |
+| `N` or `Space` | Say the line at normal speed |
+| `S` | Say it slowly |
+| `W` | Break the sentence into words |
+| `H` | Hide the German word columns, so the English becomes a prompt to answer from memory |
+
+### Flashcards
+
+Seven of the section types, including basic sentences, substitution, and translation drills, can be turned into a deck. Moving to a card says its front out loud and flipping it says the back. You can shuffle, drop single words to practise full sentences, or merge everything into one long deck.
+
+### Ear training
+
+The newest piece is a listening player. It reads a section aloud from top to bottom with a pause after each line, and you can scrub through it like a podcast. There are no audio files to measure, so it estimates how long each line will take from its word and character count. Skipping ahead mid-line works too.
+
+### Small decisions
+
+- **Slow speed is yours to set.** The default is half speed, adjustable from 0.1 to 1, and it syncs across tabs.
+- **Analytics is minimal.** PostHog with autocapture only, proxied through my own subdomain. The detailed event tracking I built in Rails (signups, checkouts, which drills people opened) didn't survive the move, because with no accounts there's nothing left to measure.
+
+## How the content gets made
+
+The content has two origins.
+
+**Units 1–12** were typed into Ruby seed files for the Rails version. A script reads those files and writes them out as JSON, one file per section. It doesn't use Rails or a database. The seed files, not the Rails database, were always the real source of truth.
+
+**Units 13–24** never touched Rails. I wrote an importer that runs `pdftotext` over the Volume 2 PDF, splits the two-column pages, parses each section type, and fixes the OCR's mistakes in both German and English.
+
+That's why the first half is cleaner than the second: one was typed by hand, the other was scraped and then corrected. Both end up as the same JSON, and Astro turns it into pages at build time.
+
+## What I'd say I learned
+
+Building the paid version taught me what the course needed. The admin panel, the audio pipeline, and the schema for fourteen different drill types were all necessary to find that out. But they were scaffolding. The thing worth keeping was the content and the way of studying it, and that fits in a static site.
+
+The Rails app is still in the repo, and it's where I'd go if I ever wanted properly recorded audio again.

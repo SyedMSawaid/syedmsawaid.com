@@ -7,7 +7,7 @@ links:
 - RubyGems: https://rubygems.org/gems/inertia_flow
 tech_stack:
   - Ruby
-  - Rails
+  - Ruby on Rails
   - Inertia.js
 launched: 2024
 type: Library

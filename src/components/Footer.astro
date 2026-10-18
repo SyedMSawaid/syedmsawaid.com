@@ -6,9 +6,30 @@ const updatedLabel = `Website updated on ${new Intl.DateTimeFormat("en-US", {
   dateStyle: "long",
   timeZone: "UTC",
 }).format(updatedAt)}`;
+const substackUrl = "https://syedmsawaid.substack.com";
 ---
 
-<footer class="mt-20 flex items-center justify-between border-t border-slate-100 pt-6 text-xs text-slate-400">
+<section class="mt-20 border-t border-slate-100 pt-8" aria-labelledby="newsletter-heading">
+  <h2 id="newsletter-heading" class="text-sm font-semibold text-slate-900">Newsletter</h2>
+  <p class="mt-1 text-sm text-slate-500">New writing in your inbox. No spam, unsubscribe any time.</p>
+  <form action={`${substackUrl}/api/v1/free?nojs=true`} method="post" target="_blank" class="mt-4 flex max-w-md flex-col gap-2 sm:flex-row">
+    <input type="hidden" name="first_url" value={substackUrl} />
+    <input type="hidden" name="source" value="syedmsawaid.com" />
+    <label for="newsletter-email" class="sr-only">Email address</label>
+    <input
+      id="newsletter-email"
+      type="email"
+      name="email"
+      required
+      placeholder="you@example.com"
+      class="min-w-0 flex-1 rounded-md border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none"
+    />
+    <button type="submit" class="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-slate-700">Subscribe</button>
+  </form>
+  <a href="/newsletter" class="mt-3 inline-block text-xs text-slate-400 transition-colors duration-150 hover:text-slate-900">View previous issues &rarr;</a>
+</section>
+
+<footer class="mt-8 flex items-center justify-between border-t border-slate-100 pt-6 text-xs text-slate-400">
   <div class="flex flex-wrap items-center gap-x-2">
     <span>&copy; {updatedAt.getUTCFullYear()} Syed Muhammad Sawaid</span>
     <time datetime={updatedDate} title={updatedLabel} aria-label={updatedLabel}>{version}</time>

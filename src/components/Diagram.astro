@@ -1,0 +1,31 @@
+---
+import { render } from "pele";
+
+interface Props {
+  chart: string;
+  caption?: string;
+}
+
+const { chart, caption } = Astro.props;
+const { svg } = render(chart.trim(), { idPrefix: `d${Math.random().toString(36).slice(2, 8)}` });
+---
+
+<figure class="mb-6">
+  <div class="diagram flex justify-center overflow-x-auto rounded-md border border-slate-200 bg-slate-50 px-3 py-5" set:html={svg} />
+  {caption && <figcaption class="mt-2 text-center text-sm text-slate-600">{caption}</figcaption>}
+</figure>
+
+<style is:global>
+  .diagram .pele {
+    --pele-bg: #f8fafc;
+    --pele-fg: #0f172a;
+    --pele-muted: #475569;
+    --pele-line: #94a3b8;
+    --pele-surface: #f1f5f9;
+    --pele-surface-alt: #e2e8f0;
+    --pele-border: #cbd5e1;
+    --pele-radius: 6px;
+    max-width: 100%;
+    height: auto;
+  }
+</style>

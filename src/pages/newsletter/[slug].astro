@@ -1,0 +1,61 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { formatIssueDate, readingTime, sortedIssues } from "@/lib/content";
+
+export async function getStaticPaths() {
+  const issues = sortedIssues(await getCollection("newsletter"));
+
+  return issues.map((issue, index) => ({
+    params: { slug: issue.data.slug },
+    props: { issue, previous: issues[index + 1], next: issues[index - 1] },
+  }));
+}
+
+interface Props {
+  issue: CollectionEntry<"newsletter">;
+  previous?: CollectionEntry<"newsletter">;
+  next?: CollectionEntry<"newsletter">;
+}
+
+const { issue, previous, next } = Astro.props;
+const { Content } = await render(issue);
+---
+
+<BaseLayout title={issue.data.title}>
+  <article>
+    <header class="mb-10">
+      <h1 class="mb-3 text-2xl leading-tight font-semibold tracking-tight text-slate-900">{issue.data.title}</h1>
+      {issue.data.subtitle && <p class="mb-3 text-slate-500">{issue.data.subtitle}</p>}
+      <div class="flex items-center gap-2 text-xs tracking-wider text-slate-400 uppercase">
+        <time datetime={issue.data.pubDate.toISOString()}>{formatIssueDate(issue)}</time>
+        <span>&middot;</span>
+        <span>{readingTime(issue.body ?? "")} min read</span>
+        <span>&middot;</span>
+        <a href={issue.data.url} target="_blank" rel="noopener" class="hover:text-slate-900" style="text-decoration:none">View on Substack</a>
+      </div>
+    </header>
+
+    <div class="prose"><Content /></div>
+
+    <nav class="mt-16 grid grid-cols-2 gap-8 border-t border-slate-100 pt-8">
+      <div>
+        {previous && (
+          <a href={`/newsletter/${previous.data.slug}/`} class="group block" style="text-decoration:none">
+            <span class="text-xs font-medium tracking-widest text-slate-400 uppercase transition-colors duration-150 group-hover:text-slate-900">Previous</span>
+            <p class="mt-1 mb-0 text-sm leading-snug text-slate-800 transition-colors duration-150 group-hover:text-slate-500">{previous.data.title}</p>
+          </a>
+        )}
+      </div>
+      <div class="text-right">
+        {next && (
+          <a href={`/newsletter/${next.data.slug}/`} class="group block" style="text-decoration:none">
+            <span class="text-xs font-medium tracking-widest text-slate-400 uppercase transition-colors duration-150 group-hover:text-slate-900">Next</span>
+            <p class="mt-1 mb-0 text-sm leading-snug text-slate-800 transition-colors duration-150 group-hover:text-slate-500">{next.data.title}</p>
+          </a>
+        )}
+      </div>
+    </nav>
+  </article>
+</BaseLayout>

@@ -1,6 +1,7 @@
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
+import { substackCollection } from "@syedmsawaid/astro-substack/collection";
 
 const posts = defineCollection({
   loader: glob({ base: "./src/content/posts", pattern: "**/*.{md,mdx}" }),
@@ -14,7 +15,7 @@ const posts = defineCollection({
 });
 
 const projects = defineCollection({
-  loader: glob({ base: "./src/content/projects", pattern: "**/*.md" }),
+  loader: glob({ base: "./src/content/projects", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
     layout: z.string().optional(),
     title: z.string(),
@@ -93,4 +94,6 @@ const articles = defineCollection({
   }),
 });
 
-export const collections = { posts, projects, watch, podcasts, books, people, blogs, articles };
+const newsletter = substackCollection("src/content/newsletter");
+
+export const collections = { newsletter, posts, projects, watch, podcasts, books, people, blogs, articles };

@@ -18,7 +18,7 @@ export function postRoute(post: CollectionEntry<"posts">) {
 }
 
 export function projectRoute(project: CollectionEntry<"projects">) {
-  return `/projects/${project.id.replace(/\.md$/, "")}/`;
+  return `/projects/${project.id.replace(/\.mdx?$/, "")}/`;
 }
 
 export function favoriteRoute(section: "watch" | "podcasts" | "books" | "people" | "blogs" | "articles", entry: { id: string }) {
@@ -48,4 +48,12 @@ export function formatPostDate(post: CollectionEntry<"posts">, format: "month" |
 export function readingTime(body: string) {
   const words = body.trim().split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.ceil(words / 200));
+}
+
+export function sortedIssues(issues: CollectionEntry<"newsletter">[]) {
+  return [...issues].sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+}
+
+export function formatIssueDate(issue: CollectionEntry<"newsletter">) {
+  return new Intl.DateTimeFormat("en-US", { dateStyle: "long", timeZone: "UTC" }).format(issue.data.pubDate);
 }

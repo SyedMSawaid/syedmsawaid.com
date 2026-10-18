@@ -1,0 +1,191 @@
+---
+title: Pwndaland
+description: A fully declarative, zero-open-port personal cloud running NixOS on a repurposed laptop, provisioned over SSH, encrypted end to end, and deployed straight from a nix-shell.
+links:
+  - GitHub: https://github.com/SyedMSawaid/pwndaland
+tech_stack:
+  - NixOS
+  - npins
+  - disko
+  - sops-nix
+  - nixos-anywhere
+  - home-manager
+  - Caddy
+  - Cloudflare Tunnel
+  - Nextcloud
+  - Docker
+  - LUKS
+  - Btrfs
+launched: 2026
+type: Homelab
+state: Active
+---
+
+import Diagram from "@/components/Diagram.astro";
+
+"Cloud for the Pwnda." Pwndaland is my personal cloud: one repurposed laptop, running Nextcloud, a social-media scheduler, and whatever else I decide to declaratively will into existence. Disk layout, secrets, containers, reverse proxy: all of it lives in a single git repo, and the machine never gets a hand-to-keyboard visit.
+
+**Zero open ports.** The server listens on **nothing** publicly. Every service is reached through an outbound Cloudflare Tunnel that lands on a Caddy reverse proxy bound to loopback. No port forwarding, no exposed ports, no VPN to babysit.
+
+## Architecture
+
+Every request enters through Cloudflare, rides the tunnel to `cloudflared`, and gets routed by hostname to the right service on `127.0.0.1`. The `whoami` container exists for exactly one reason: it proves the entire path (tunnel → Caddy → container) works, end to end, from anywhere.
+
+<Diagram
+  caption="Request flow: everything past the tunnel is loopback-only."
+  chart={`
+flowchart LR
+    U["Browser"] --> CF["Cloudflare Edge<br/>DNS + TLS"]
+    CF == "outbound tunnel" ==> TUN["cloudflared"]
+    TUN --> CADDY["Caddy :8081"]
+    CADDY --> NC["nginx :8080<br/>Nextcloud 34"]
+    CADDY --> PZ["Postiz :4007"]
+    CADDY --> WI["whoami :9000<br/>health canary"]
+
+    classDef loop fill:#f1f5f9,stroke:#94a3b8,color:#0f172a
+    class NC,PZ,WI,CADDY loop
+  `}
+/>
+
+The Caddy config is a custom module I wrote (`pwndaland.caddy`): declaring a vhost automatically renders the Caddy virtual host, and because it's plain HTTP on loopback, **Caddy stays completely out of ACME**. Cloudflare already terminates TLS, so there's no cert renewal dance at all:
+
+```nix
+pwndaland.caddy.vhosts = {
+  "cloud.syedmsawaid.com".upstream = "http://127.0.0.1:8080";
+  "whoami.syedmsawaid.com".upstream = "http://127.0.0.1:9000";
+};
+```
+
+## A flake-less NixOS server in 2026
+
+No `flake.nix`, no `flake.lock`, no flake-parts. This follows the [nix.dev remote provisioning tutorial](https://nix.dev/tutorials/nixos/provisioning-remote-machines.html) to the letter: **npins** for pinned inputs, `nix-shell` for the dev environment, and `-I nixos-config=` to point classic `nixos-rebuild` at the right host. It works inside plain `nix-build`, needs no experimental features, and there's no lock file to churn.
+
+Everything is pinned in `npins/sources.json`:
+
+| Pin | Source | Version |
+| --- | --- | --- |
+| `nixpkgs` | `nixpkgs-unstable` | 26.11pre1080219 |
+| `disko` | GitRelease | v1.13.0 |
+| `home-manager` | master | pinned commit |
+| `sops-nix` | master | pinned commit |
+| `nix-index-database` | main | pinned commit |
+
+The modules import those pins with plain `let sources = import ../npins; in ...`, the recommended sops-nix path for non-flake users, and it makes the config consumable by every Nix entry point, not just the flake-aware ones.
+
+## Provisioning a machine you can't touch
+
+The best part: pwndaland was installed remotely, without ever touching its keyboard. The pipeline runs entirely over SSH:
+
+<Diagram
+  caption="Cold provisioning: from a blank disk to a running personal cloud."
+  chart={`
+sequenceDiagram
+    participant WS as Workstation
+    participant ISO as Installer ISO
+    participant HOST as pwndaland
+    WS->>ISO: Boot custom SSH-over-Tor live CD
+    ISO-->>WS: ntfy push: fresh .onion address
+    WS->>HOST: nixos-anywhere: disko formats LUKS + Btrfs
+    HOST->>HOST: Reboots into initrd (SSH on :2222)
+    WS->>HOST: SSH in with hardware security key
+    WS->>HOST: systemd-tty-ask-password-agent
+    Note over HOST: LUKS passphrase typed from afar
+    WS->>HOST: nixos-rebuild switch --target-host
+  `}
+/>
+
+A few highlights from that sequence:
+
+- **The installer ISO phones home.** The custom ISO runs Tor and pushes its own `.onion` address to an ntfy topic, so the machine is reachable for provisioning with zero inbound ports, even before NixOS is installed.
+- **Remote disk unlocking.** `boot.initrd` runs systemd with an SSH server on port 2222, authorized only by a hardware security key. After a reboot or power loss, I SSH in during early boot and type the LUKS passphrase at a systemd prompt to bring the disk back online.
+- **Disko does the partitioning.** GPT, a 1 GiB ESP, and one big LUKS container holding Btrfs subvolumes, declared in `modules/disko/luks-btrfs.nix` and never typed by hand.
+
+The LUKS setup is deliberately paranoid for spinning hardware: hardened PBKDF parameters on a 4 GB machine that takes 7.5 seconds to unlock.
+
+```nix
+extraFormatArgs = [
+  "--cipher" "aes-xts-plain64" "--key-size" "512" "--hash" "sha512"
+  "--pbkdf-memory" "4194304"  # 4 GB RAM to unlock the disk
+  "--iter-time" "7500"        # 7.5s to unlock, on purpose
+  "--use-random"
+];
+```
+
+<Diagram
+  caption="Disk layout: one LUKS container, three Btrfs subvolumes, zstd everywhere."
+  chart={`
+flowchart TB
+    DISK["500 GB laptop HDD"]
+    DISK --> MBR["BIOS boot: 1 MiB"]
+    DISK --> ESP["ESP: 1 GiB vfat → /boot"]
+    DISK --> LUKS["LUKS: rest of the disk"]
+    LUKS --> BTRFS["Btrfs: compress=zstd, noatime"]
+    BTRFS --> R["/@ → /"]
+    BTRFS --> N["/@nix → /nix"]
+    BTRFS --> S["/@swap → /swap: 8 GiB"]
+
+    classDef enc fill:#f1f5f9,stroke:#94a3b8,color:#0f172a
+    class LUKS,BTRFS enc
+  `}
+/>
+
+**Why is TRIM disabled?** The drive is a 500 GB spinning HDD, so discard passes only wear the platters for nothing, and the config force-disables `allowDiscards` on the LUKS container. On an SSD you'd want the opposite.
+
+## Secrets that never touch disk in the clear
+
+Encrypted secrets are committed to the repo with **sops**, dual-keyed so both my PGP key and the host's age key can open them:
+
+```yaml
+keys:
+  - &admin <PGP_KEY_FINGERPRINT>
+  - &pwndaland <AGE_RECIPIENT>
+creation_rules:
+  - path_regex: secrets/pwndaland/[^/]+\\.(yaml|json|env|ini)$
+    key_groups:
+      - pgp: [*admin]
+        age: [*pwndaland]
+```
+
+On the server, sops-nix derives the age key from the host's own SSH key, so there's nothing to distribute. The clever bit is `sops.templates` with placeholders: secrets get rendered *inline* into a docker-compose YAML at activation time, so the plaintext never exists until systemd materializes it in a `0700` directory.
+
+## The services
+
+**Nextcloud 34**, pinned deliberately (Nextcloud only supports one major upgrade at a time, so 33 → 34 → 35 is a planned walk, not an accident), with three extra apps:
+
+- **Memories**: the photo library, with go-vod transcoding HEVC → H.264 on the fly, because most browsers refuse to decode H.265 and give you a black frame with audio.
+- **previewgenerator**: 14 preview providers declared explicitly so they survive rebuilds (HEIC, TIFF, Movie, and friends).
+- **recognize**: TensorFlow face recognition, with an entire essay's worth of comments in the config explaining why it beat `facerecognition` (not packaged in nixpkgs, capped at max-version 31, drags in InsightFace binaries).
+
+Since it runs on a 4-core box, one oneshot service caps TensorFlow to 2 cores; left alone it spawns a worker per core and saturates the machine hard enough to make the web UI sluggish.
+
+**Postiz**, a six-container social-media scheduler stack (Postgres, Redis, Temporal, Elasticsearch, Temporal UI), is being reimplemented as a first-class NixOS module: secrets inlined via sops placeholders, its own Caddy vhost and tunnel hostname wired up automatically, and lifecycle managed by a oneshot unit that runs `docker compose up -d` against the templated file.
+
+## Day-2 operations
+
+Deploying is one script: push the closure over SSH and switch.
+
+```sh
+export NIX_SSHOPTS="-i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes"
+nix-shell --run 'nixos-rebuild switch \
+  --target-host <user>@<lan-ip> \
+  --elevate=sudo \
+  -I nixos-config=hosts/pwndaland/configuration.nix'
+```
+
+And it's a *laptop*, which means a few host-specific hacks you only need when the server has a lid:
+
+```nix
+# Headless server: closing the laptop lid must not suspend it,
+# otherwise Nextcloud and SSH go down.
+logind.settings.Login = {
+  HandleLidSwitch = "ignore";
+  HandleLidSwitchExternalPower = "ignore";
+  HandleLidSwitchDocked = "ignore";
+};
+```
+
+There's also a `verify.sh` that pure-evaluates `config.system.build.toplevel`, so I can check a config change actually builds before pushing it at the machine.
+
+## The comments are the documentation
+
+The README was deleted long ago. In its place: the configs themselves carry unusually detailed inline reasoning, explaining why `recognize` over `facerecognition`, why TRIM is off, why logind's restart trigger got wired up (upstream leaves it commented out because it breaks graphical sessions; this host is headless, so it's safe), and why Nextcloud's package is pinned one major behind. Reading the repo top to bottom reads like a build log of decisions.

@@ -7,7 +7,7 @@ export async function getStaticPaths() {
   const projects = await getCollection("projects");
 
   return projects.map((project) => ({
-    params: { slug: project.id.replace(/\.md$/, "") },
+    params: { slug: project.id.replace(/\.mdx?$/, "") },
     props: { project },
   }));
 }

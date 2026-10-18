@@ -2,6 +2,8 @@
 import { defineConfig } from 'astro/config';
 
 import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
+import substack from '@syedmsawaid/astro-substack';
 import tailwindcss from '@tailwindcss/vite';
 import { load } from 'js-yaml';
 
@@ -20,7 +22,13 @@ function yaml() {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://syedmsawaid.com',
-  integrations: [mdx()],
+  integrations: [
+    mdx(),
+    substack({ publication: 'syedmsawaid', dir: 'src/content/newsletter' }),
+    sitemap({
+      filter: (page) => !page.includes('/admin'),
+    }),
+  ],
   vite: {
     plugins: [yaml(), tailwindcss()]
   }
